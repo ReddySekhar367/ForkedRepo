@@ -4,19 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NEXUS — Future Goods</title>
+<title>NEXUS — Modern Commerce</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
 
 <style>
 
 /* =========================================================
-   RESET
+   CORE
 ========================================================= */
 
 *{
@@ -26,22 +32,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 }
 
 :root{
-    --bg:#0b0c0d;
-    --surface:#121416;
-    --surface-2:#191b1e;
-    --surface-3:#202327;
+    --black:#070707;
+    --black-2:#0d0d0e;
+    --black-3:#141416;
 
-    --white:#f4f4ef;
-    --muted:#858a8d;
-    --muted-2:#5d6265;
+    --white:#f7f7f4;
+    --white-soft:#b5b5b1;
 
-    --lime:#d7ff42;
-    --lime-dark:#b6df24;
+    --lime:#d8ff45;
+    --lime-dark:#b9df27;
 
-    --line:#292d30;
-    --red:#ff5f57;
+    --line:rgba(255,255,255,.10);
 
-    --max:1440px;
+    --container:1440px;
+
+    --ease:cubic-bezier(.22,.8,.2,1);
 }
 
 html{
@@ -49,10 +54,11 @@ html{
 }
 
 body{
-    background:var(--bg);
+    background:var(--black);
     color:var(--white);
-    font-family:"DM Sans",sans-serif;
+    font-family:Inter,sans-serif;
     line-height:1.5;
+    overflow-x:hidden;
 }
 
 body.no-scroll{
@@ -74,56 +80,30 @@ a{
 }
 
 img{
-    display:block;
     width:100%;
+    display:block;
 }
 
 /* =========================================================
-   GLOBAL
+   UTILITIES
 ========================================================= */
 
 .container{
-    width:min(var(--max),calc(100% - 48px));
+    width:min(var(--container),calc(100% - 64px));
     margin:auto;
 }
 
-.mono{
-    font-family:"Space Grotesk",sans-serif;
-}
-
-.label{
-    font-family:"Space Grotesk",sans-serif;
-    color:var(--lime);
-    font-size:11px;
-    font-weight:700;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-}
-
 .section{
-    padding:110px 0;
+    padding:120px 0;
 }
 
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    gap:40px;
-    margin-bottom:45px;
+.muted{
+    color:var(--white-soft);
 }
 
-.section-header h2{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(42px,6vw,82px);
-    font-weight:600;
-    line-height:.95;
-    letter-spacing:-.065em;
-}
-
-.section-header p{
-    max-width:370px;
-    color:var(--muted);
-    font-size:14px;
+.upper{
+    text-transform:uppercase;
+    letter-spacing:.16em;
 }
 
 /* =========================================================
@@ -131,52 +111,53 @@ img{
 ========================================================= */
 
 .topbar{
-    min-height:35px;
+    height:34px;
     background:var(--lime);
-    color:#10120b;
+    color:#050505;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    font-family:"Space Grotesk",sans-serif;
     font-size:10px;
-    font-weight:700;
-    letter-spacing:.1em;
+    font-weight:800;
+    letter-spacing:.16em;
     text-transform:uppercase;
 }
 
 /* =========================================================
-   HEADER
+   NAVIGATION
 ========================================================= */
 
-.header{
+.navbar{
+    height:82px;
+
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:1000;
 
-    background:rgba(11,12,13,.86);
+    background:rgba(7,7,7,.86);
     backdrop-filter:blur(20px);
 
     border-bottom:1px solid var(--line);
 }
 
-.header-inner{
-    min-height:76px;
+.nav-inner{
+    height:100%;
 
     display:grid;
     grid-template-columns:1fr auto 1fr;
     align-items:center;
 }
 
-.brand{
-    font-family:"Space Grotesk",sans-serif;
+.logo{
+    font-family:Manrope,sans-serif;
     font-size:24px;
-    font-weight:700;
+    font-weight:800;
     letter-spacing:-.08em;
 }
 
-.brand span{
+.logo-mark{
     color:var(--lime);
 }
 
@@ -184,74 +165,69 @@ img{
     display:flex;
     gap:34px;
 
-    font-family:"Space Grotesk",sans-serif;
-    font-size:12px;
-    font-weight:600;
+    font-size:11px;
+    font-weight:700;
     text-transform:uppercase;
-    letter-spacing:.04em;
+    letter-spacing:.12em;
 }
 
 .main-nav a{
-    color:#aeb2b3;
+    color:#bdbdb9;
     transition:.2s;
 }
 
-.main-nav a:hover,
-.main-nav a.active{
-    color:var(--white);
+.main-nav a:hover{
+    color:#fff;
 }
 
-.header-actions{
-    justify-self:end;
+.nav-actions{
     display:flex;
+    justify-content:flex-end;
+    align-items:center;
     gap:7px;
 }
 
-.icon-btn{
-    width:40px;
-    height:40px;
+.nav-btn{
+    width:42px;
+    height:42px;
 
-    border:1px solid var(--line);
+    border:1px solid transparent;
+    border-radius:50%;
+
     background:transparent;
-    color:var(--white);
+    color:#fff;
 
-    display:grid;
-    place-items:center;
-
-    transition:.2s;
+    transition:.25s;
 }
 
-.icon-btn:hover{
-    background:var(--surface-2);
-    border-color:#41464a;
+.nav-btn:hover{
+    border-color:var(--line);
+    background:var(--black-3);
 }
 
-.cart-btn{
+.bag-btn{
     position:relative;
 }
 
-.cart-count{
+.bag-count{
     position:absolute;
-    top:-5px;
-    right:-5px;
+
+    top:-2px;
+    right:-2px;
 
     width:17px;
     height:17px;
-
-    background:var(--lime);
-    color:#10120b;
 
     border-radius:50%;
 
     display:grid;
     place-items:center;
 
-    font-size:9px;
-    font-weight:800;
-}
+    background:var(--lime);
+    color:#000;
 
-.mobile-toggle{
-    display:none;
+    font-size:8px;
+    font-weight:800;
 }
 
 /* =========================================================
@@ -259,228 +235,244 @@ img{
 ========================================================= */
 
 .hero{
-    padding:30px 0 0;
+    min-height:calc(100vh - 116px);
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    overflow:hidden;
 }
 
 .hero-grid{
-    min-height:760px;
-
     display:grid;
     grid-template-columns:1.05fr .95fr;
-    gap:12px;
-}
-
-.hero-main{
-    position:relative;
     min-height:760px;
-
-    overflow:hidden;
-    background:#191b1d;
-}
-
-.hero-main img{
-    position:absolute;
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    filter:brightness(.62) saturate(.75);
-
-    transition:transform 1s ease;
-}
-
-.hero-main:hover img{
-    transform:scale(1.035);
-}
-
-.hero-main::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.08),
-            rgba(0,0,0,.2) 35%,
-            rgba(0,0,0,.9)
-        );
-}
-
-.hero-content{
-    position:absolute;
-    z-index:2;
-
-    left:50px;
-    right:50px;
-    bottom:48px;
-}
-
-.hero-index{
-    display:flex;
-    justify-content:space-between;
     align-items:center;
+    gap:80px;
+}
 
-    margin-bottom:25px;
+.hero-copy{
+    position:relative;
+    z-index:2;
+}
 
-    color:#c4c7c8;
+.hero-kicker{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-    font-family:"Space Grotesk",sans-serif;
+    margin-bottom:28px;
+
+    color:var(--lime);
+
     font-size:10px;
-    letter-spacing:.12em;
+    font-weight:800;
+    letter-spacing:.22em;
     text-transform:uppercase;
 }
 
-.hero-title{
-    max-width:850px;
+.hero-kicker::before{
+    content:"";
 
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(58px,7vw,108px);
-    line-height:.86;
-    letter-spacing:-.08em;
-    font-weight:600;
+    width:35px;
+    height:1px;
+
+    background:var(--lime);
 }
 
-.hero-title span{
+.hero h1{
+    max-width:850px;
+
+    font-family:Manrope,sans-serif;
+
+    font-size:clamp(68px,8.7vw,138px);
+
+    line-height:.84;
+
+    letter-spacing:-.085em;
+
+    font-weight:800;
+}
+
+.hero h1 span{
     color:var(--lime);
 }
 
 .hero-description{
     max-width:510px;
-    color:#bfc3c4;
-    margin:25px 0 30px;
+
+    margin-top:34px;
+
+    color:#999994;
+
     font-size:15px;
+    line-height:1.8;
 }
 
 .hero-actions{
     display:flex;
-    gap:10px;
+    align-items:center;
+    gap:14px;
+
+    margin-top:38px;
 }
 
-.primary{
-    min-height:48px;
-    padding:0 20px;
-
+.btn{
     border:0;
+
+    padding:16px 22px;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+
+    font-size:11px;
+    font-weight:800;
+
+    text-transform:uppercase;
+    letter-spacing:.12em;
+
+    transition:.3s var(--ease);
+}
+
+.btn-primary{
     background:var(--lime);
-    color:#0b0d0c;
-
-    font-family:"Space Grotesk",sans-serif;
-    font-size:12px;
-    font-weight:700;
-    text-transform:uppercase;
-
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-
-    transition:.2s;
-}
-
-.primary:hover{
-    background:#efffa2;
-    transform:translateY(-2px);
-}
-
-.secondary{
-    min-height:48px;
-    padding:0 20px;
-
-    border:1px solid #54595c;
-    background:rgba(0,0,0,.25);
-    color:#fff;
-
-    font-family:"Space Grotesk",sans-serif;
-    font-size:12px;
-    font-weight:700;
-    text-transform:uppercase;
-
-    display:inline-flex;
-    align-items:center;
-    gap:12px;
-}
-
-.secondary:hover{
-    background:#fff;
     color:#000;
 }
 
+.btn-primary:hover{
+    background:#fff;
+    transform:translateY(-3px);
+}
+
+.btn-outline{
+    border:1px solid var(--line);
+    background:transparent;
+    color:#fff;
+}
+
+.btn-outline:hover{
+    border-color:#fff;
+}
+
 /* =========================================================
-   HERO SIDE
+   HERO VISUAL
 ========================================================= */
 
-.hero-side{
-    display:grid;
-    grid-template-rows:1fr 1fr;
-    gap:12px;
-}
-
-.hero-panel{
+.hero-visual{
     position:relative;
-    overflow:hidden;
-    background:var(--surface);
+    height:680px;
 }
 
-.hero-panel img{
+.hero-main-image{
+    position:absolute;
+
+    right:0;
+    top:0;
+
+    width:83%;
     height:100%;
+
     object-fit:cover;
 
-    filter:saturate(.7) brightness(.72);
+    filter:saturate(.7) contrast(1.08);
 
-    transition:.7s;
-}
-
-.hero-panel:hover img{
-    transform:scale(1.04);
-}
-
-.hero-panel::after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:linear-gradient(
-        transparent 20%,
-        rgba(0,0,0,.85)
+    clip-path:polygon(
+        13% 0,
+        100% 0,
+        100% 88%,
+        82% 100%,
+        0 100%,
+        0 13%
     );
 }
 
-.panel-content{
+.hero-overlay{
     position:absolute;
-    z-index:2;
+    inset:0;
 
-    left:30px;
-    right:30px;
-    bottom:28px;
+    background:
+        linear-gradient(
+            90deg,
+            var(--black) 0%,
+            transparent 45%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(0,0,0,.55),
+            transparent 45%
+        );
+
+    pointer-events:none;
 }
 
-.panel-content h3{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:34px;
-    line-height:.95;
-    letter-spacing:-.05em;
-    margin:7px 0;
-}
-
-.panel-content p{
-    color:#a9adaf;
-    font-size:12px;
-}
-
-.panel-number{
+.hero-product{
     position:absolute;
-    top:25px;
-    right:25px;
+
+    left:0;
+    bottom:42px;
+
+    width:290px;
+
+    background:#111;
+
+    border:1px solid var(--line);
+
+    padding:10px;
+
     z-index:3;
+}
 
-    color:#fff;
-    font-family:"Space Grotesk",sans-serif;
-    font-size:11px;
+.hero-product-image{
+    height:180px;
+    object-fit:cover;
+}
+
+.hero-product-info{
+    padding:15px 8px 7px;
+}
+
+.hero-product-meta{
+    color:#777;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+}
+
+.hero-product-name{
+    margin-top:5px;
+    font-size:14px;
+    font-weight:700;
+}
+
+.hero-product-bottom{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+
+.hero-product-price{
+    color:var(--lime);
+    font-weight:800;
+}
+
+.hero-index{
+    position:absolute;
+
+    right:-20px;
+    bottom:20px;
+
+    font-family:Manrope,sans-serif;
+
+    font-size:100px;
+    line-height:1;
+
+    color:rgba(255,255,255,.07);
+
+    font-weight:800;
 }
 
 /* =========================================================
@@ -488,14 +480,12 @@ img{
 ========================================================= */
 
 .ticker{
-    overflow:hidden;
-
     border-top:1px solid var(--line);
     border-bottom:1px solid var(--line);
 
-    margin-top:12px;
+    overflow:hidden;
 
-    background:#0e1011;
+    background:#0a0a0a;
 }
 
 .ticker-track{
@@ -503,28 +493,28 @@ img{
 
     display:flex;
 
-    animation:ticker 30s linear infinite;
+    animation:ticker 28s linear infinite;
 }
 
 .ticker-item{
-    padding:18px 25px;
+    padding:21px 30px;
 
-    font-family:"Space Grotesk",sans-serif;
-    font-size:12px;
-    font-weight:600;
+    font-size:10px;
+    font-weight:800;
 
+    letter-spacing:.2em;
     text-transform:uppercase;
-    letter-spacing:.08em;
 
     white-space:nowrap;
 }
 
 .ticker-item span{
     color:var(--lime);
-    margin:0 20px;
+    margin-left:30px;
 }
 
 @keyframes ticker{
+
     from{
         transform:translateX(0);
     }
@@ -532,6 +522,51 @@ img{
     to{
         transform:translateX(-50%);
     }
+
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+    margin-bottom:45px;
+}
+
+.section-number{
+    color:var(--lime);
+
+    font-size:10px;
+    font-weight:800;
+
+    letter-spacing:.2em;
+}
+
+.section-title{
+    margin-top:10px;
+
+    font-family:Manrope,sans-serif;
+
+    font-size:clamp(40px,5vw,72px);
+
+    line-height:.92;
+
+    letter-spacing:-.065em;
+
+    font-weight:800;
+}
+
+.section-description{
+    max-width:380px;
+
+    color:#777;
+
+    font-size:13px;
+    line-height:1.7;
 }
 
 /* =========================================================
@@ -540,559 +575,593 @@ img{
 
 .category-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
+
+    grid-template-columns:
+        1.3fr
+        .7fr
+        1fr
+        .8fr;
+
+    grid-auto-rows:260px;
+
+    gap:10px;
 }
 
-.category-card{
-    min-height:250px;
-
+.category{
     position:relative;
+
     overflow:hidden;
 
-    background:var(--surface);
+    background:#111;
 
     cursor:pointer;
 }
 
-.category-card:first-child{
-    grid-column:span 2;
+.category:nth-child(1){
+    grid-row:span 2;
 }
 
-.category-card img{
+.category:nth-child(4){
+    grid-row:span 2;
+}
+
+.category img{
+    width:100%;
     height:100%;
-    min-height:250px;
 
     object-fit:cover;
 
-    opacity:.62;
-    filter:saturate(.65);
+    opacity:.7;
 
-    transition:.6s;
+    transition:
+        transform .7s var(--ease),
+        opacity .5s;
 }
 
-.category-card:hover img{
-    opacity:.82;
-    transform:scale(1.06);
+.category:hover img{
+    transform:scale(1.07);
+    opacity:.95;
 }
 
-.category-overlay{
+.category::after{
+    content:"";
+
     position:absolute;
     inset:0;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(0,0,0,.9)
+        );
+}
 
-    padding:24px;
+.category-info{
+    position:absolute;
 
-    background:linear-gradient(
-        180deg,
-        rgba(0,0,0,.05),
-        rgba(0,0,0,.75)
-    );
+    left:24px;
+    right:24px;
+    bottom:22px;
+
+    z-index:2;
 }
 
 .category-number{
-    align-self:flex-end;
+    color:var(--lime);
 
-    color:#aaa;
-    font-family:"Space Grotesk",sans-serif;
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:.2em;
+}
+
+.category h3{
+    margin-top:5px;
+
+    font-family:Manrope,sans-serif;
+
+    font-size:25px;
+
+    letter-spacing:-.04em;
+}
+
+.category-count{
+    color:#999;
+
+    margin-top:5px;
+
     font-size:10px;
 }
 
-.category-name{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:27px;
-    font-weight:600;
-    letter-spacing:-.05em;
-}
-
-.category-meta{
-    color:#9da1a3;
-    font-size:11px;
-    margin-top:4px;
-}
-
 /* =========================================================
-   PRODUCTS
+   PRODUCT SECTION
 ========================================================= */
 
-.shop-toolbar{
+.shop-section{
+    background:#f0f0ec;
+    color:#090909;
+}
+
+.shop-section .section-number{
+    color:#111;
+}
+
+.shop-section .section-description{
+    color:#777;
+}
+
+.shop-tools{
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    margin-bottom:30px;
+    border-bottom:1px solid #d5d5d0;
+
+    margin-bottom:35px;
+
+    padding-bottom:14px;
 }
 
-.filter-list{
+.filters{
     display:flex;
-    gap:5px;
+    gap:24px;
+
     overflow:auto;
-
-    scrollbar-width:none;
-}
-
-.filter-list::-webkit-scrollbar{
-    display:none;
 }
 
 .filter{
-    border:1px solid var(--line);
-    background:transparent;
-    color:#858a8d;
+    border:0;
 
-    padding:10px 15px;
+    background:none;
 
-    font-family:"Space Grotesk",sans-serif;
+    padding:4px 0;
+
+    color:#777;
+
     font-size:10px;
-    font-weight:700;
+    font-weight:800;
+
+    letter-spacing:.12em;
 
     text-transform:uppercase;
+
     white-space:nowrap;
 
-    transition:.2s;
+    position:relative;
 }
 
-.filter:hover,
 .filter.active{
-    background:var(--lime);
-    border-color:var(--lime);
-    color:#11140d;
+    color:#000;
 }
 
-.result-count{
-    color:var(--muted);
-    font-size:11px;
+.filter.active::after{
+    content:"";
+
+    position:absolute;
+
+    bottom:-15px;
+    left:0;
+
+    width:100%;
+    height:2px;
+
+    background:#000;
 }
 
-/* =========================================================
-   PRODUCT GRID
-========================================================= */
+.product-count{
+    color:#888;
+
+    font-size:10px;
+
+    white-space:nowrap;
+}
 
 .products{
     display:grid;
-    grid-template-columns:repeat(12,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:12px;
 }
 
 .product{
-    grid-column:span 3;
+    position:relative;
 
-    background:var(--surface);
+    background:#e6e6e1;
 
-    border:1px solid transparent;
+    overflow:hidden;
 
-    transition:.25s;
-}
+    cursor:pointer;
 
-.product:nth-child(3n){
-    grid-column:span 4;
-}
-
-.product:nth-child(4n){
-    grid-column:span 2;
+    transition:
+        transform .35s var(--ease);
 }
 
 .product:hover{
-    border-color:#303538;
-    transform:translateY(-3px);
+    transform:translateY(-6px);
 }
 
 .product-image{
     position:relative;
 
-    height:330px;
+    height:390px;
 
     overflow:hidden;
-
-    background:#17191b;
 }
 
 .product-image img{
     height:100%;
     object-fit:cover;
 
-    transition:.5s;
+    transition:
+        transform .7s var(--ease);
 }
 
 .product:hover .product-image img{
-    transform:scale(1.045);
+    transform:scale(1.05);
 }
 
-.product-badge{
+.product-label{
     position:absolute;
-    top:12px;
-    left:12px;
+
+    left:13px;
+    top:13px;
 
     z-index:2;
 
-    padding:6px 9px;
+    padding:6px 8px;
 
-    background:var(--lime);
-    color:#11140d;
+    background:#000;
+    color:#fff;
 
-    font-family:"Space Grotesk",sans-serif;
-    font-size:9px;
-    font-weight:700;
+    font-size:8px;
+    font-weight:800;
+
+    letter-spacing:.12em;
 }
 
 .product-heart{
     position:absolute;
-    top:10px;
-    right:10px;
 
-    width:36px;
-    height:36px;
-
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(10,10,10,.5);
-    color:#fff;
+    right:13px;
+    top:13px;
 
     z-index:2;
 
-    transition:.2s;
-}
+    width:34px;
+    height:34px;
 
-.product-heart:hover,
-.product-heart.liked{
-    color:var(--lime);
-    border-color:var(--lime);
+    border:0;
+
+    background:rgba(255,255,255,.88);
+
+    border-radius:50%;
 }
 
 .product-info{
-    padding:18px;
+    padding:17px;
 }
 
 .product-category{
-    color:var(--muted);
-    font-family:"Space Grotesk",sans-serif;
-    font-size:9px;
-    font-weight:600;
-    letter-spacing:.1em;
+    color:#8b8b87;
+
+    font-size:8px;
+    font-weight:800;
+
     text-transform:uppercase;
+    letter-spacing:.14em;
 }
 
 .product-name{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:16px;
-    font-weight:500;
+    margin-top:5px;
 
-    margin:7px 0 18px;
+    font-family:Manrope,sans-serif;
 
-    letter-spacing:-.025em;
+    font-size:14px;
+    font-weight:800;
 }
 
 .product-bottom{
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
+    justify-content:space-between;
+
+    margin-top:17px;
 }
 
 .price{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:15px;
-    font-weight:700;
+    font-size:13px;
+    font-weight:800;
 }
 
-.old-price{
-    color:#5d6265;
-    text-decoration:line-through;
-    font-size:11px;
-    margin-left:5px;
-}
+.add{
+    width:35px;
+    height:35px;
 
-.add-btn{
-    width:38px;
-    height:38px;
+    border:0;
 
-    border:1px solid #383d40;
-    background:transparent;
+    background:#000;
     color:#fff;
 
     transition:.2s;
 }
 
-.add-btn:hover{
+.add:hover{
     background:var(--lime);
-    color:#0b0d0c;
-    border-color:var(--lime);
+    color:#000;
 }
 
 /* =========================================================
-   STORY
+   FEATURE
 ========================================================= */
 
-.story{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    min-height:620px;
-
-    border:1px solid var(--line);
+.feature-section{
+    padding:0;
 }
 
-.story-image{
+.feature{
+    min-height:650px;
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
     overflow:hidden;
 }
 
-.story-image img{
-    height:100%;
+.feature-image{
+    height:650px;
+
     object-fit:cover;
-    filter:saturate(.65);
+
+    filter:grayscale(.35);
 }
 
-.story-content{
-    padding:70px;
+.feature-copy{
+    background:var(--lime);
+    color:#080808;
+
+    padding:80px;
 
     display:flex;
     flex-direction:column;
     justify-content:center;
-
-    background:var(--surface);
 }
 
-.story-content h2{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(48px,5vw,78px);
-    line-height:.9;
-    letter-spacing:-.07em;
+.feature-number{
+    font-size:10px;
+    font-weight:800;
 
-    margin:18px 0 25px;
+    letter-spacing:.2em;
 }
 
-.story-content h2 span{
-    color:var(--lime);
+.feature h2{
+    margin:25px 0;
+
+    font-family:Manrope,sans-serif;
+
+    font-size:clamp(50px,6vw,92px);
+
+    line-height:.85;
+
+    letter-spacing:-.075em;
+
+    font-weight:800;
 }
 
-.story-content p{
-    max-width:470px;
-
-    color:var(--muted);
+.feature p{
+    max-width:430px;
 
     font-size:14px;
 
-    margin-bottom:30px;
+    line-height:1.8;
+
+    color:#313313;
 }
 
-.story-stat-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+.feature .btn{
+    width:max-content;
 
-    border-top:1px solid var(--line);
+    margin-top:30px;
 
-    padding-top:22px;
-
-    margin-top:20px;
-}
-
-.stat strong{
-    display:block;
-
-    font-family:"Space Grotesk",sans-serif;
-    font-size:25px;
-}
-
-.stat span{
-    color:var(--muted);
-    font-size:10px;
+    background:#000;
+    color:#fff;
 }
 
 /* =========================================================
-   REVIEWS
+   EDITORIAL
 ========================================================= */
 
-.reviews{
+.editorial{
     display:grid;
-    grid-template-columns:1.5fr 1fr 1fr;
-    gap:12px;
+
+    grid-template-columns:
+        .8fr
+        1.4fr
+        .8fr;
+
+    min-height:600px;
+
+    gap:10px;
 }
 
-.review{
-    min-height:290px;
+.editorial-card{
+    position:relative;
 
-    background:var(--surface);
+    overflow:hidden;
+
+    background:#111;
+}
+
+.editorial-card img{
+    height:100%;
+    object-fit:cover;
+
+    transition:.7s var(--ease);
+}
+
+.editorial-card:hover img{
+    transform:scale(1.04);
+}
+
+.editorial-card:nth-child(2){
+    min-height:600px;
+}
+
+.editorial-overlay{
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
 
     padding:30px;
 
-    border:1px solid var(--line);
-
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+    background:
+        linear-gradient(
+            transparent 45%,
+            rgba(0,0,0,.85)
+        );
 }
 
-.review.featured{
-    background:var(--lime);
-    color:#11140d;
-    border-color:var(--lime);
-}
-
-.review-stars{
-    font-size:12px;
+.editorial-tag{
     color:var(--lime);
-}
 
-.review.featured .review-stars{
-    color:#11140d;
-}
+    font-size:9px;
+    font-weight:800;
 
-.review-text{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:25px;
-    line-height:1.1;
-    letter-spacing:-.035em;
-}
+    letter-spacing:.18em;
 
-.review-author{
-    font-size:10px;
-    font-weight:700;
     text-transform:uppercase;
-    letter-spacing:.08em;
+}
+
+.editorial-title{
+    margin-top:8px;
+
+    font-family:Manrope,sans-serif;
+
+    font-size:26px;
+
+    line-height:1;
+
+    letter-spacing:-.05em;
 }
 
 /* =========================================================
-   NEWSLETTER
+   TRUST
 ========================================================= */
 
-.newsletter{
-    position:relative;
-    overflow:hidden;
-
-    background:var(--lime);
-    color:#11140d;
-
-    padding:65px;
+.trust{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
 
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
 
-    align-items:center;
+    grid-template-columns:repeat(4,1fr);
 }
 
-.newsletter::before{
-    content:"N";
+.trust-item{
+    padding:35px;
 
-    position:absolute;
-
-    right:-30px;
-    bottom:-110px;
-
-    font-family:"Space Grotesk",sans-serif;
-    font-size:330px;
-    font-weight:700;
-
-    opacity:.08;
+    border-right:1px solid var(--line);
 }
 
-.newsletter h2{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:clamp(45px,5vw,75px);
-    line-height:.88;
-    letter-spacing:-.07em;
+.trust-item:last-child{
+    border-right:0;
 }
 
-.newsletter p{
-    max-width:430px;
+.trust-icon{
+    color:var(--lime);
 
-    margin-top:15px;
+    font-size:18px;
 
-    font-size:13px;
+    margin-bottom:20px;
 }
 
-.newsletter-form{
-    position:relative;
-    z-index:2;
-
-    display:flex;
-
-    border-bottom:2px solid #11140d;
-
-    padding-bottom:10px;
-}
-
-.newsletter-form input{
-    flex:1;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-
-    color:#11140d;
-
-    font-size:14px;
-}
-
-.newsletter-form input::placeholder{
-    color:#52582e;
-}
-
-.newsletter-form button{
-    border:0;
-    background:none;
-
-    color:#11140d;
-
-    font-family:"Space Grotesk",sans-serif;
+.trust-title{
     font-size:11px;
-    font-weight:700;
+    font-weight:800;
+
     text-transform:uppercase;
+    letter-spacing:.1em;
+}
+
+.trust-text{
+    color:#777;
+
+    margin-top:8px;
+
+    font-size:11px;
 }
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
-footer{
-    padding:75px 0 30px;
+.footer{
+    padding:90px 0 30px;
 }
 
 .footer-top{
     display:grid;
+
     grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:40px;
+
+    gap:50px;
+
+    padding-bottom:80px;
 }
 
-.footer-brand{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:28px;
-    font-weight:700;
+.footer-logo{
+    font-family:Manrope,sans-serif;
+
+    font-size:35px;
+
+    font-weight:800;
+
     letter-spacing:-.08em;
 }
 
-.footer-brand span{
-    color:var(--lime);
-}
-
 .footer-description{
-    max-width:290px;
+    max-width:310px;
 
-    color:var(--muted);
+    margin-top:18px;
 
-    margin-top:15px;
+    color:#777;
 
     font-size:12px;
+
+    line-height:1.8;
 }
 
 .footer-column h4{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:.12em;
+    margin-bottom:20px;
 
-    margin-bottom:18px;
+    color:#fff;
+
+    font-size:9px;
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
 }
 
 .footer-column a{
     display:block;
 
-    color:var(--muted);
+    margin:11px 0;
 
-    font-size:12px;
+    color:#777;
 
-    margin:9px 0;
+    font-size:11px;
 
     transition:.2s;
 }
@@ -1102,62 +1171,74 @@ footer{
 }
 
 .footer-bottom{
+    border-top:1px solid var(--line);
+
+    padding-top:20px;
+
     display:flex;
     justify-content:space-between;
 
-    border-top:1px solid var(--line);
+    color:#555;
 
-    margin-top:65px;
-    padding-top:20px;
+    font-size:9px;
 
-    color:var(--muted);
-
-    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
 }
 
 /* =========================================================
    SEARCH
 ========================================================= */
 
-.search-layer{
+.search-overlay{
     position:fixed;
+
     inset:0;
 
-    z-index:500;
+    z-index:2000;
 
-    background:rgba(5,6,7,.88);
+    background:rgba(0,0,0,.8);
 
-    backdrop-filter:blur(20px);
+    backdrop-filter:blur(15px);
 
     display:none;
 
-    padding:100px 20px;
+    align-items:flex-start;
+
+    justify-content:center;
+
+    padding-top:130px;
 }
 
-.search-layer.open{
-    display:block;
+.search-overlay.open{
+    display:flex;
 }
 
-.search-container{
-    width:min(850px,100%);
-    margin:auto;
+.search{
+    width:min(800px,calc(100% - 30px));
+
+    background:#111;
+
+    border:1px solid var(--line);
 }
 
 .search-head{
     display:flex;
+
     align-items:center;
+
     gap:15px;
 
-    border-bottom:1px solid #444;
+    padding:25px;
 
-    padding-bottom:18px;
+    border-bottom:1px solid var(--line);
 }
 
 .search-head i{
     color:var(--lime);
 }
 
-.search-input{
+.search-head input{
     flex:1;
 
     border:0;
@@ -1167,39 +1248,47 @@ footer{
 
     color:#fff;
 
-    font-family:"Space Grotesk",sans-serif;
-    font-size:35px;
-}
-
-.search-input::placeholder{
-    color:#44484a;
+    font-size:22px;
 }
 
 .search-close{
     border:0;
-    background:none;
-    color:#fff;
 
-    font-size:20px;
+    background:none;
+
+    color:#777;
+
+    font-size:18px;
 }
 
 .search-results{
-    margin-top:25px;
+    max-height:500px;
+
+    overflow:auto;
 }
 
 .search-result{
     display:flex;
+
     align-items:center;
+
     gap:15px;
 
-    padding:13px 0;
+    padding:15px 25px;
 
     border-bottom:1px solid var(--line);
+
+    cursor:pointer;
+}
+
+.search-result:hover{
+    background:#171717;
 }
 
 .search-result img{
     width:55px;
-    height:55px;
+    height:65px;
+
     object-fit:cover;
 }
 
@@ -1207,152 +1296,166 @@ footer{
     flex:1;
 }
 
-.search-result-info strong{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:14px;
+.search-result-name{
+    font-size:13px;
+    font-weight:700;
 }
 
-.search-result-info span{
-    display:block;
+.search-result-category{
+    color:#777;
 
-    color:var(--muted);
+    margin-top:4px;
 
-    font-size:11px;
+    font-size:9px;
+
+    text-transform:uppercase;
 }
 
 /* =========================================================
-   CART DRAWER
+   CART
 ========================================================= */
 
-.drawer-backdrop{
+.cart-overlay{
     position:fixed;
+
     inset:0;
 
-    z-index:600;
+    z-index:1800;
 
     background:rgba(0,0,0,.55);
 
     display:none;
 }
 
-.drawer-backdrop.open{
+.cart-overlay.open{
     display:block;
 }
 
-.cart-drawer{
+.cart{
     position:fixed;
 
+    z-index:1900;
+
+    right:-470px;
     top:0;
-    right:-480px;
 
-    z-index:601;
+    width:min(470px,100%);
 
-    width:min(480px,100%);
     height:100%;
 
-    background:#101214;
+    background:#111;
 
     border-left:1px solid var(--line);
 
+    transition:.4s var(--ease);
+
     display:flex;
     flex-direction:column;
-
-    transition:.35s ease;
 }
 
-.cart-drawer.open{
+.cart.open{
     right:0;
 }
 
 .cart-header{
-    min-height:85px;
+    padding:25px;
 
-    padding:20px 25px;
+    border-bottom:1px solid var(--line);
 
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    border-bottom:1px solid var(--line);
 }
 
-.cart-header h2{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:22px;
+.cart-title{
+    font-family:Manrope,sans-serif;
+
+    font-size:25px;
+    font-weight:800;
+
+    letter-spacing:-.05em;
 }
 
 .cart-close{
     width:38px;
     height:38px;
 
-    background:none;
     border:1px solid var(--line);
+
+    background:none;
+
     color:#fff;
+
+    border-radius:50%;
 }
 
-.cart-content{
+.cart-items{
     flex:1;
+
     overflow:auto;
 
     padding:25px;
 }
 
-.empty-cart{
-    min-height:100%;
+.empty{
+    height:100%;
 
     display:grid;
     place-items:center;
 
-    text-align:center;
+    color:#666;
 
-    color:var(--muted);
+    text-align:center;
 }
 
-.empty-cart i{
-    font-size:35px;
+.empty i{
     color:var(--lime);
+
+    font-size:30px;
+
     margin-bottom:15px;
 }
 
 .cart-item{
     display:grid;
-    grid-template-columns:70px 1fr auto;
+
+    grid-template-columns:75px 1fr auto;
 
     gap:13px;
 
-    padding:15px 0;
+    align-items:center;
+
+    padding:14px 0;
 
     border-bottom:1px solid var(--line);
 }
 
 .cart-item img{
-    width:70px;
-    height:75px;
+    width:75px;
+    height:85px;
 
     object-fit:cover;
 }
 
-.cart-item h4{
-    font-family:"Space Grotesk",sans-serif;
-    font-size:13px;
+.cart-item-name{
+    font-size:12px;
+    font-weight:700;
 }
 
-.cart-item p{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
+.cart-item-price{
+    color:#777;
+
+    margin-top:5px;
+
+    font-size:10px;
 }
 
 .remove{
     border:0;
+
     background:none;
-    color:#666;
 
-    align-self:start;
-}
-
-.remove:hover{
-    color:var(--red);
+    color:#555;
 }
 
 .cart-footer{
@@ -1365,46 +1468,144 @@ footer{
     display:flex;
     justify-content:space-between;
 
-    font-family:"Space Grotesk",sans-serif;
-
     margin-bottom:18px;
+
+    font-size:13px;
+    font-weight:800;
 }
 
 .checkout{
     width:100%;
-    justify-content:center;
+
+    background:var(--lime);
+
+    color:#000;
 }
 
 /* =========================================================
-   TOAST
+   PRODUCT MODAL
 ========================================================= */
 
-.toast{
+.product-modal{
     position:fixed;
 
-    right:25px;
-    bottom:25px;
+    inset:0;
 
-    z-index:1000;
+    z-index:3000;
 
-    background:var(--lime);
-    color:#10120b;
+    background:rgba(0,0,0,.78);
 
-    padding:13px 18px;
+    backdrop-filter:blur(18px);
 
-    font-family:"Space Grotesk",sans-serif;
-    font-size:11px;
-    font-weight:700;
+    display:none;
 
-    transform:translateY(120px);
-    opacity:0;
+    align-items:center;
 
-    transition:.3s;
+    justify-content:center;
+
+    padding:30px;
 }
 
-.toast.show{
-    transform:translateY(0);
-    opacity:1;
+.product-modal.open{
+    display:flex;
+}
+
+.modal-content{
+    width:min(1050px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:#111;
+
+    border:1px solid var(--line);
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    position:relative;
+}
+
+.modal-image{
+    min-height:650px;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+.modal-info{
+    padding:60px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.modal-close{
+    position:absolute;
+
+    right:18px;
+    top:18px;
+
+    z-index:5;
+
+    width:40px;
+    height:40px;
+
+    border:1px solid var(--line);
+
+    background:#111;
+
+    color:#fff;
+}
+
+.modal-category{
+    color:var(--lime);
+
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:.2em;
+
+    text-transform:uppercase;
+}
+
+.modal-title{
+    margin-top:15px;
+
+    font-family:Manrope,sans-serif;
+
+    font-size:clamp(40px,5vw,65px);
+
+    line-height:.9;
+
+    letter-spacing:-.07em;
+}
+
+.modal-price{
+    margin-top:22px;
+
+    font-size:18px;
+    font-weight:800;
+}
+
+.modal-description{
+    margin-top:25px;
+
+    color:#777;
+
+    font-size:13px;
+
+    line-height:1.8;
+}
+
+.modal-add{
+    margin-top:35px;
+
+    width:100%;
 }
 
 /* =========================================================
@@ -1425,108 +1626,95 @@ footer{
         display:none;
     }
 
-    .header-inner{
-        grid-template-columns:auto 1fr auto;
+    .nav-inner{
+        grid-template-columns:auto 1fr;
     }
 
-    .mobile-toggle{
-        display:grid;
-    }
-
-    .brand{
-        justify-self:center;
+    .nav-actions{
+        grid-column:2;
+        grid-row:1;
     }
 
     .hero-grid{
         grid-template-columns:1fr;
+        padding:70px 0;
     }
 
-    .hero-main{
-        min-height:650px;
-    }
-
-    .hero-side{
-        grid-template-columns:1fr 1fr;
-        grid-template-rows:360px;
+    .hero-visual{
+        height:600px;
     }
 
     .category-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .category-card:first-child{
-        grid-column:span 2;
-    }
-
-    .product{
-        grid-column:span 4;
-    }
-
-    .product:nth-child(3n),
-    .product:nth-child(4n){
-        grid-column:span 4;
-    }
-
-    .story{
-        grid-template-columns:1fr;
-    }
-
-    .story-image{
-        min-height:500px;
-    }
-
-    .reviews{
         grid-template-columns:1fr 1fr;
     }
 
-    .review.featured{
-        grid-column:span 2;
+    .products{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .footer-top{
-        grid-template-columns:2fr 1fr 1fr;
+    .editorial{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .editorial-card:nth-child(2){
+        grid-column:1/-1;
+        grid-row:1;
+    }
+
+    .trust{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .trust-item:nth-child(2){
+        border-right:0;
+    }
+
+    .trust-item:nth-child(-n+2){
+        border-bottom:1px solid var(--line);
     }
 
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
 
     .container{
-        width:calc(100% - 26px);
+        width:calc(100% - 30px);
     }
 
     .section{
-        padding:70px 0;
+        padding:75px 0;
     }
 
     .topbar{
         font-size:8px;
+        height:30px;
     }
 
-    .header-inner{
-        min-height:65px;
+    .navbar{
+        height:68px;
     }
 
-    .header-actions .icon-btn:first-child{
-        display:none;
+    .logo{
+        font-size:21px;
+    }
+
+    .nav-btn{
+        width:38px;
+        height:38px;
     }
 
     .hero{
-        padding-top:12px;
+        min-height:auto;
     }
 
-    .hero-main{
-        min-height:600px;
+    .hero-grid{
+        min-height:auto;
+        gap:45px;
+        padding:65px 0;
     }
 
-    .hero-content{
-        left:22px;
-        right:22px;
-        bottom:28px;
-    }
-
-    .hero-title{
-        font-size:58px;
+    .hero h1{
+        font-size:67px;
     }
 
     .hero-description{
@@ -1538,63 +1726,70 @@ footer{
         align-items:stretch;
     }
 
-    .hero-actions button{
-        justify-content:center;
+    .hero-actions .btn{
+        width:100%;
     }
 
-    .hero-side{
-        grid-template-columns:1fr;
-        grid-template-rows:280px 280px;
+    .hero-visual{
+        height:440px;
     }
 
-    .panel-content{
-        left:20px;
-        right:20px;
-        bottom:20px;
+    .hero-main-image{
+        width:90%;
+        height:100%;
     }
 
-    .panel-content h3{
-        font-size:27px;
+    .hero-product{
+        width:230px;
+        bottom:15px;
+    }
+
+    .hero-product-image{
+        height:125px;
+    }
+
+    .hero-index{
+        font-size:65px;
     }
 
     .section-header{
         display:block;
     }
 
-    .section-header h2{
-        margin-bottom:18px;
+    .section-description{
+        margin-top:20px;
     }
 
     .category-grid{
         grid-template-columns:1fr 1fr;
-        gap:8px;
+        grid-auto-rows:180px;
     }
 
-    .category-card,
-    .category-card:first-child{
-        grid-column:span 1;
-        min-height:200px;
+    .category:nth-child(1),
+    .category:nth-child(4){
+        grid-row:span 1;
     }
 
-    .category-card img{
-        min-height:200px;
+    .category h3{
+        font-size:17px;
     }
 
-    .category-name{
-        font-size:19px;
+    .category-info{
+        left:14px;
+        right:14px;
+        bottom:14px;
     }
 
-    .category-overlay{
-        padding:15px;
+    .shop-tools{
+        align-items:flex-start;
     }
 
-    .shop-toolbar{
-        display:block;
+    .filters{
+        gap:18px;
     }
 
-    .result-count{
-        display:block;
-        margin-top:15px;
+    .product-count{
+        display:none;
     }
 
     .products{
@@ -1602,130 +1797,149 @@ footer{
         gap:8px;
     }
 
-    .product,
-    .product:nth-child(3n),
-    .product:nth-child(4n){
-        grid-column:span 1;
-    }
-
     .product-image{
-        height:220px;
+        height:235px;
     }
 
     .product-info{
-        padding:13px;
+        padding:12px;
     }
 
     .product-name{
-        font-size:13px;
+        font-size:12px;
     }
 
-    .price{
-        font-size:13px;
+    .product-bottom{
+        margin-top:13px;
     }
 
-    .add-btn{
-        width:32px;
-        height:32px;
+    .feature{
+        display:block;
     }
 
-    .story-image{
+    .feature-image{
+        height:400px;
+    }
+
+    .feature-copy{
+        padding:50px 25px 60px;
+    }
+
+    .editorial{
+        grid-template-columns:1fr;
+    }
+
+    .editorial-card:nth-child(2){
+        grid-column:auto;
+        min-height:500px;
+    }
+
+    .editorial-card{
         min-height:350px;
     }
 
-    .story-content{
-        padding:35px 25px;
+    .trust{
+        grid-template-columns:1fr 1fr;
     }
 
-    .story-stat-grid{
-        gap:10px;
-    }
-
-    .reviews{
-        grid-template-columns:1fr;
-    }
-
-    .review.featured{
-        grid-column:auto;
-    }
-
-    .review-text{
-        font-size:22px;
-    }
-
-    .newsletter{
-        padding:40px 25px;
-        grid-template-columns:1fr;
-        gap:35px;
+    .trust-item{
+        padding:22px 15px;
     }
 
     .footer-top{
         grid-template-columns:1fr 1fr;
-        gap:35px 20px;
+        gap:35px;
     }
 
     .footer-top > div:first-child{
-        grid-column:span 2;
+        grid-column:1/-1;
     }
 
     .footer-bottom{
         display:block;
+        line-height:2;
     }
 
-    .footer-bottom span{
-        display:block;
-        margin-top:8px;
+    .modal-content{
+        grid-template-columns:1fr;
     }
 
-    .search-input{
-        font-size:24px;
+    .modal-image{
+        height:350px;
+        min-height:350px;
+    }
+
+    .modal-info{
+        padding:35px 25px 45px;
     }
 
     .mobile-nav{
         position:fixed;
+
+        display:grid;
+
+        grid-template-columns:repeat(3,1fr);
+
         bottom:0;
         left:0;
         right:0;
 
-        z-index:200;
+        z-index:1200;
 
-        height:62px;
-
-        display:grid;
-        grid-template-columns:repeat(4,1fr);
-
-        background:#111315;
+        background:rgba(10,10,10,.96);
 
         border-top:1px solid var(--line);
+
+        padding:8px 10px;
+
+        backdrop-filter:blur(15px);
     }
 
     .mobile-nav button{
         border:0;
-        background:none;
-        color:#777c7e;
 
-        font-size:9px;
+        background:none;
+
+        color:#777;
+
+        font-size:8px;
+
+        font-weight:800;
+
         text-transform:uppercase;
+
+        letter-spacing:.1em;
     }
 
     .mobile-nav i{
         display:block;
+
+        color:#fff;
+
         font-size:16px;
+
         margin-bottom:4px;
     }
 
-    .mobile-nav button.active{
-        color:var(--lime);
-    }
-
     body{
-        padding-bottom:62px;
+        padding-bottom:65px;
     }
 
-    .toast{
-        bottom:78px;
-        right:13px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms!important;
+        transition-duration:.01ms!important;
     }
+
 }
 
 </style>
@@ -1733,66 +1947,63 @@ footer{
 
 <body>
 
-<!-- =========================================================
+<!-- =======================================================
      TOP BAR
-========================================================= -->
+======================================================= -->
 
 <div class="topbar">
-    Free delivery on orders over $75 — limited edition drops every week
+    Complimentary shipping on orders over $100 · Worldwide delivery
 </div>
 
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
+<!-- =======================================================
+     NAV
+======================================================= -->
 
-<header class="header">
+<header class="navbar">
 
-    <div class="container header-inner">
+    <div class="container nav-inner">
 
-        <button class="icon-btn mobile-toggle" id="mobileToggle">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-
-        <a href="#" class="brand">
-            NEXUS<span>.</span>
+        <a href="#" class="logo">
+            NEXUS<span class="logo-mark">/</span>
         </a>
 
         <nav class="main-nav">
-
-            <a href="#shop" class="active">
-                Shop
-            </a>
-
-            <a href="#collections">
-                Collections
-            </a>
-
-            <a href="#story">
-                Journal
-            </a>
-
-            <a href="#reviews">
-                Community
-            </a>
-
+            <a href="#shop">Shop</a>
+            <a href="#collections">Collections</a>
+            <a href="#edit">The Edit</a>
+            <a href="#journal">Journal</a>
         </nav>
 
-        <div class="header-actions">
+        <div class="nav-actions">
 
-            <button class="icon-btn" id="searchBtn">
+            <button
+                class="nav-btn"
+                id="searchButton"
+                aria-label="Search">
+
                 <i class="fa-solid fa-magnifying-glass"></i>
+
             </button>
 
-            <button class="icon-btn">
+            <button
+                class="nav-btn"
+                aria-label="Wishlist">
+
                 <i class="fa-regular fa-heart"></i>
+
             </button>
 
-            <button class="icon-btn cart-btn" id="cartBtn">
+            <button
+                class="nav-btn bag-btn"
+                id="bagButton"
+                aria-label="Shopping bag">
 
                 <i class="fa-solid fa-bag-shopping"></i>
 
-                <span class="cart-count" id="cartCount">
+                <span
+                    class="bag-count"
+                    id="bagCount">
                     0
                 </span>
 
@@ -1805,9 +2016,9 @@ footer{
 </header>
 
 
-<!-- =========================================================
+<!-- =======================================================
      HERO
-========================================================= -->
+======================================================= -->
 
 <main>
 
@@ -1815,116 +2026,91 @@ footer{
 
     <div class="container hero-grid">
 
-        <div class="hero-main">
+        <div class="hero-copy">
 
-            <img
-                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1500&q=90"
-                alt="Nexus collection">
+            <div class="hero-kicker">
+                Collection 06 / 26
+            </div>
 
-            <div class="hero-content">
+            <h1>
+                Designed<br>
+                for <span>now.</span>
+            </h1>
 
-                <div class="hero-index">
+            <p class="hero-description">
+                A considered selection of technology, objects and
+                everyday essentials. Less noise. Better choices.
+            </p>
 
-                    <span>
-                        NEXUS / 026
-                    </span>
+            <div class="hero-actions">
 
-                    <span>
-                        01 — 04
-                    </span>
+                <button
+                    class="btn btn-primary"
+                    id="heroShop">
 
-                </div>
+                    Explore collection
 
-                <div class="label">
-                    The new everyday
-                </div>
+                    <i class="fa-solid fa-arrow-right"></i>
 
-                <h1 class="hero-title">
-                    Objects for<br>
-                    <span>better living.</span>
-                </h1>
+                </button>
 
-                <p class="hero-description">
-                    Technology, clothing and everyday objects
-                    selected for people who care about design,
-                    performance and longevity.
-                </p>
+                <button
+                    class="btn btn-outline"
+                    id="heroEdit">
 
-                <div class="hero-actions">
+                    View the edit
 
-                    <button class="primary" id="exploreBtn">
-                        Explore drop
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-
-                    <button class="secondary" id="storyBtn">
-                        Our approach
-                    </button>
-
-                </div>
+                </button>
 
             </div>
 
         </div>
 
 
-        <div class="hero-side">
+        <div class="hero-visual">
 
-            <div class="hero-panel">
+            <img
+                class="hero-main-image"
+                src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1400&q=90"
+                alt="Nexus collection">
 
-                <span class="panel-number">
-                    02
-                </span>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-product">
 
                 <img
-                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1000&q=85"
-                    alt="Workspace">
+                    class="hero-product-image"
+                    src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=700&q=85"
+                    alt="Minimal watch">
 
-                <div class="panel-content">
+                <div class="hero-product-info">
 
-                    <div class="label">
-                        Workspace
+                    <div class="hero-product-meta">
+                        Featured object
                     </div>
 
-                    <h3>
-                        Work<br>better.
-                    </h3>
+                    <div class="hero-product-name">
+                        Series 04 Chronograph
+                    </div>
 
-                    <p>
-                        Tools designed around your day.
-                    </p>
+                    <div class="hero-product-bottom">
+
+                        <span class="hero-product-price">
+                            $349
+                        </span>
+
+                        <span class="muted">
+                            04 / 12
+                        </span>
+
+                    </div>
 
                 </div>
 
             </div>
 
-
-            <div class="hero-panel">
-
-                <span class="panel-number">
-                    03
-                </span>
-
-                <img
-                    src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85"
-                    alt="Clothing">
-
-                <div class="panel-content">
-
-                    <div class="label">
-                        Essentials
-                    </div>
-
-                    <h3>
-                        Wear<br>often.
-                    </h3>
-
-                    <p>
-                        Quiet pieces. Strong materials.
-                    </p>
-
-                </div>
-
+            <div class="hero-index">
+                01
             </div>
 
         </div>
@@ -1934,33 +2120,41 @@ footer{
 </section>
 
 
-<!-- =========================================================
+<!-- =======================================================
      TICKER
-========================================================= -->
+======================================================= -->
 
 <div class="ticker">
 
     <div class="ticker-track">
 
         <div class="ticker-item">
-            Curated daily
-            <span>✦</span>
-            Designed to last
-            <span>✦</span>
-            No unnecessary noise
-            <span>✦</span>
-            Better everyday objects
+            Objects with intention
             <span>✦</span>
         </div>
 
         <div class="ticker-item">
-            Curated daily
+            New season / new perspective
             <span>✦</span>
-            Designed to last
+        </div>
+
+        <div class="ticker-item">
+            Built for everyday
             <span>✦</span>
-            No unnecessary noise
+        </div>
+
+        <div class="ticker-item">
+            Objects with intention
             <span>✦</span>
-            Better everyday objects
+        </div>
+
+        <div class="ticker-item">
+            New season / new perspective
+            <span>✦</span>
+        </div>
+
+        <div class="ticker-item">
+            Built for everyday
             <span>✦</span>
         </div>
 
@@ -1969,11 +2163,13 @@ footer{
 </div>
 
 
-<!-- =========================================================
+<!-- =======================================================
      COLLECTIONS
-========================================================= -->
+======================================================= -->
 
-<section class="section" id="collections">
+<section
+    class="section"
+    id="collections">
 
     <div class="container">
 
@@ -1981,21 +2177,20 @@ footer{
 
             <div>
 
-                <div class="label">
-                    Explore
+                <div class="section-number">
+                    01 / CATEGORIES
                 </div>
 
-                <h2>
-                    Pick your<br>
-                    <span>world.</span>
+                <h2 class="section-title">
+                    Explore<br>
+                    by world.
                 </h2>
 
             </div>
 
-            <p>
-                Four corners of the Nexus collection.
-                Start with what you need, then stay for
-                what you didn't know you wanted.
+            <p class="section-description">
+                From everyday technology to objects that make
+                your space feel considered. Start anywhere.
             </p>
 
         </div>
@@ -2003,116 +2198,154 @@ footer{
 
         <div class="category-grid">
 
-            <div class="category-card" data-filter="phones">
+            <article
+                class="category"
+                data-filter="technology">
 
                 <img
-                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85">
+                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=85"
+                    alt="Technology">
 
-                <div class="category-overlay">
+                <div class="category-info">
 
-                    <span class="category-number">
+                    <div class="category-number">
                         01
-                    </span>
+                    </div>
 
-                    <div>
+                    <h3>Technology</h3>
 
-                        <div class="category-name">
-                            Technology
-                        </div>
-
-                        <div class="category-meta">
-                            Devices / 24 pieces
-                        </div>
-
+                    <div class="category-count">
+                        24 objects
                     </div>
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="category-card" data-filter="laptops">
+            <article
+                class="category"
+                data-filter="audio">
 
                 <img
-                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85">
+                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"
+                    alt="Audio">
 
-                <div class="category-overlay">
+                <div class="category-info">
 
-                    <span class="category-number">
+                    <div class="category-number">
                         02
-                    </span>
+                    </div>
 
-                    <div>
+                    <h3>Audio</h3>
 
-                        <div class="category-name">
-                            Workspace
-                        </div>
-
-                        <div class="category-meta">
-                            Desk / 18 pieces
-                        </div>
-
+                    <div class="category-count">
+                        16 objects
                     </div>
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="category-card" data-filter="clothing">
+            <article
+                class="category"
+                data-filter="workspace">
 
                 <img
-                    src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85">
+                    src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=85"
+                    alt="Workspace">
 
-                <div class="category-overlay">
+                <div class="category-info">
 
-                    <span class="category-number">
+                    <div class="category-number">
                         03
-                    </span>
+                    </div>
 
-                    <div>
+                    <h3>Workspace</h3>
 
-                        <div class="category-name">
-                            Clothing
-                        </div>
-
-                        <div class="category-meta">
-                            Everyday / 42 pieces
-                        </div>
-
+                    <div class="category-count">
+                        18 objects
                     </div>
 
                 </div>
 
-            </div>
+            </article>
 
 
-            <div class="category-card" data-filter="gadgets">
+            <article
+                class="category"
+                data-filter="fashion">
 
                 <img
-                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85">
+                    src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85"
+                    alt="Fashion">
 
-                <div class="category-overlay">
+                <div class="category-info">
 
-                    <span class="category-number">
+                    <div class="category-number">
                         04
-                    </span>
+                    </div>
 
-                    <div>
+                    <h3>Fashion</h3>
 
-                        <div class="category-name">
-                            Audio
-                        </div>
-
-                        <div class="category-meta">
-                            Sound / 16 pieces
-                        </div>
-
+                    <div class="category-count">
+                        42 objects
                     </div>
 
                 </div>
 
-            </div>
+            </article>
+
+
+            <article
+                class="category"
+                data-filter="travel">
+
+                <img
+                    src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85"
+                    alt="Travel">
+
+                <div class="category-info">
+
+                    <div class="category-number">
+                        05
+                    </div>
+
+                    <h3>Travel</h3>
+
+                    <div class="category-count">
+                        21 objects
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="category"
+                data-filter="footwear">
+
+                <img
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85"
+                    alt="Footwear">
+
+                <div class="category-info">
+
+                    <div class="category-number">
+                        06
+                    </div>
+
+                    <h3>Footwear</h3>
+
+                    <div class="category-count">
+                        31 objects
+                    </div>
+
+                </div>
+
+            </article>
 
         </div>
 
@@ -2121,11 +2354,13 @@ footer{
 </section>
 
 
-<!-- =========================================================
+<!-- =======================================================
      SHOP
-========================================================= -->
+======================================================= -->
 
-<section class="section" id="shop">
+<section
+    class="section shop-section"
+    id="shop">
 
     <div class="container">
 
@@ -2133,136 +2368,130 @@ footer{
 
             <div>
 
-                <div class="label">
-                    The current drop
+                <div class="section-number">
+                    02 / SHOP
                 </div>
 
-                <h2>
-                    Worth<br>
-                    <span>having.</span>
+                <h2 class="section-title">
+                    The current<br>
+                    selection.
                 </h2>
 
             </div>
 
-            <p>
-                No endless catalogue. Just the products
-                currently earning their place in our store.
+            <p class="section-description">
+                Products chosen for function, form and the
+                simple fact that they deserve your attention.
             </p>
 
         </div>
 
 
-        <div class="shop-toolbar">
+        <div class="shop-tools">
 
-            <div class="filter-list">
+            <div class="filters">
 
-                <button class="filter active" data-filter="all">
+                <button
+                    class="filter active"
+                    data-filter="all">
                     All
                 </button>
 
-                <button class="filter" data-filter="phones">
+                <button
+                    class="filter"
+                    data-filter="technology">
                     Technology
                 </button>
 
-                <button class="filter" data-filter="laptops">
+                <button
+                    class="filter"
+                    data-filter="workspace">
                     Workspace
                 </button>
 
-                <button class="filter" data-filter="clothing">
-                    Clothing
-                </button>
-
-                <button class="filter" data-filter="gadgets">
+                <button
+                    class="filter"
+                    data-filter="audio">
                     Audio
                 </button>
 
-                <button class="filter" data-filter="footwear">
+                <button
+                    class="filter"
+                    data-filter="fashion">
+                    Fashion
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="footwear">
                     Footwear
                 </button>
 
-                <button class="filter" data-filter="accessories">
-                    Accessories
+                <button
+                    class="filter"
+                    data-filter="travel">
+                    Travel
                 </button>
 
             </div>
 
-            <div class="result-count" id="resultCount">
-                8 products
+            <div
+                class="product-count"
+                id="productCount">
+                08 PRODUCTS
             </div>
 
         </div>
 
 
-        <div class="products" id="products"></div>
+        <div
+            class="products"
+            id="products">
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =========================================================
-     STORY
-========================================================= -->
+<!-- =======================================================
+     FEATURE
+======================================================= -->
 
-<section class="section" id="story">
+<section class="feature-section">
 
-    <div class="container">
+    <div class="feature">
 
-        <div class="story">
+        <img
+            class="feature-image"
+            src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1300&q=90"
+            alt="The winter edit">
 
-            <div class="story-image">
+        <div class="feature-copy">
 
-                <img
-                    src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=85"
-                    alt="Nexus workspace">
-
+            <div class="feature-number">
+                03 / THE EDIT
             </div>
 
-            <div class="story-content">
+            <h2>
+                Quiet<br>
+                confidence.
+            </h2>
 
-                <div class="label">
-                    Why Nexus
-                </div>
+            <p>
+                Neutral textures. Functional silhouettes.
+                Pieces that don't need to announce themselves
+                to make an impression.
+            </p>
 
-                <h2>
-                    Buy less.<br>
-                    Choose <span>better.</span>
-                </h2>
+            <button
+                class="btn"
+                id="featureButton">
 
-                <p>
-                    We don't believe shopping needs to mean
-                    scrolling through thousands of products.
-                    Nexus is built around a smaller idea:
-                    find excellent things and make them easy
-                    to discover.
-                </p>
+                Shop the edit
+                <i class="fa-solid fa-arrow-right"></i>
 
-                <button class="primary">
-                    Read our journal
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </button>
-
-
-                <div class="story-stat-grid">
-
-                    <div class="stat">
-                        <strong>92%</strong>
-                        <span>Repeat customers</span>
-                    </div>
-
-                    <div class="stat">
-                        <strong>4.9</strong>
-                        <span>Average rating</span>
-                    </div>
-
-                    <div class="stat">
-                        <strong>48h</strong>
-                        <span>Average dispatch</span>
-                    </div>
-
-                </div>
-
-            </div>
+            </button>
 
         </div>
 
@@ -2271,11 +2500,13 @@ footer{
 </section>
 
 
-<!-- =========================================================
-     REVIEWS
-========================================================= -->
+<!-- =======================================================
+     EDITORIAL
+======================================================= -->
 
-<section class="section" id="reviews">
+<section
+    class="section"
+    id="edit">
 
     <div class="container">
 
@@ -2283,72 +2514,85 @@ footer{
 
             <div>
 
-                <div class="label">
-                    Community
+                <div class="section-number">
+                    04 / JOURNAL
                 </div>
 
-                <h2>
-                    People<br>
-                    <span>get it.</span>
+                <h2 class="section-title">
+                    More than<br>
+                    a storefront.
                 </h2>
 
             </div>
 
+            <p class="section-description">
+                Ideas, objects and the thinking behind what
+                makes a product worth keeping.
+            </p>
+
         </div>
 
 
-        <div class="reviews">
+        <div class="editorial">
 
-            <article class="review featured">
+            <article class="editorial-card">
 
-                <div class="review-stars">
-                    ★★★★★
-                </div>
+                <img
+                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85"
+                    alt="Workspace">
 
-                <div class="review-text">
-                    “The rare online store where
-                    I actually want almost everything
-                    on the page.”
-                </div>
+                <div class="editorial-overlay">
 
-                <div class="review-author">
-                    Maya R. / Verified buyer
-                </div>
+                    <div class="editorial-tag">
+                        Guide
+                    </div>
 
-            </article>
+                    <div class="editorial-title">
+                        Building a better workspace
+                    </div>
 
-
-            <article class="review">
-
-                <div class="review-stars">
-                    ★★★★★
-                </div>
-
-                <div class="review-text">
-                    “Beautiful products.
-                    Zero unnecessary clutter.”
-                </div>
-
-                <div class="review-author">
-                    Daniel K.
                 </div>
 
             </article>
 
 
-            <article class="review">
+            <article class="editorial-card">
 
-                <div class="review-stars">
-                    ★★★★★
+                <img
+                    src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=90"
+                    alt="Minimal interior">
+
+                <div class="editorial-overlay">
+
+                    <div class="editorial-tag">
+                        Perspective
+                    </div>
+
+                    <div class="editorial-title">
+                        Why less can feel like more
+                    </div>
+
                 </div>
 
-                <div class="review-text">
-                    “Feels more like a magazine
-                    than an online shop.”
-                </div>
+            </article>
 
-                <div class="review-author">
-                    Sophie M.
+
+            <article class="editorial-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=85"
+                    alt="Fashion">
+
+                <div class="editorial-overlay">
+
+                    <div class="editorial-tag">
+                        Style
+                    </div>
+
+                    <div class="editorial-title">
+                        The art of everyday dressing
+                    </div>
+
                 </div>
 
             </article>
@@ -2360,64 +2604,93 @@ footer{
 </section>
 
 
-<!-- =========================================================
-     NEWSLETTER
-========================================================= -->
+<!-- =======================================================
+     TRUST
+======================================================= -->
 
-<section class="section">
+<div class="container">
 
-    <div class="container">
+    <div class="trust">
 
-        <div class="newsletter">
+        <div class="trust-item">
 
-            <div>
-
-                <div class="label" style="color:#11140d">
-                    The signal
-                </div>
-
-                <h2>
-                    Good things.<br>
-                    No spam.
-                </h2>
-
-                <p>
-                    New drops, product stories and occasional
-                    member-only offers. That's it.
-                </p>
-
+            <div class="trust-icon">
+                <i class="fa-solid fa-box"></i>
             </div>
 
+            <div class="trust-title">
+                Carefully packed
+            </div>
 
-            <form class="newsletter-form" id="newsletterForm">
+            <div class="trust-text">
+                Every order leaves our studio protected.
+            </div>
 
-                <input
-                    id="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    required>
+        </div>
 
-                <button type="submit">
-                    Join Nexus
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
 
-            </form>
+        <div class="trust-item">
+
+            <div class="trust-icon">
+                <i class="fa-solid fa-globe"></i>
+            </div>
+
+            <div class="trust-title">
+                Worldwide
+            </div>
+
+            <div class="trust-text">
+                We deliver to more than 80 countries.
+            </div>
+
+        </div>
+
+
+        <div class="trust-item">
+
+            <div class="trust-icon">
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+            </div>
+
+            <div class="trust-title">
+                Easy returns
+            </div>
+
+            <div class="trust-text">
+                30 days to change your mind.
+            </div>
+
+        </div>
+
+
+        <div class="trust-item">
+
+            <div class="trust-icon">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+
+            <div class="trust-title">
+                Human support
+            </div>
+
+            <div class="trust-text">
+                Real people, Monday through Friday.
+            </div>
 
         </div>
 
     </div>
 
-</section>
+</div>
 
 </main>
 
 
-<!-- =========================================================
+<!-- =======================================================
      FOOTER
-========================================================= -->
+======================================================= -->
 
-<footer>
+<footer class="footer" id="journal">
 
     <div class="container">
 
@@ -2425,13 +2698,13 @@ footer{
 
             <div>
 
-                <div class="footer-brand">
-                    NEXUS<span>.</span>
+                <div class="footer-logo">
+                    NEXUS<span class="logo-mark">/</span>
                 </div>
 
                 <p class="footer-description">
-                    A considered marketplace for technology,
-                    clothing and objects made for everyday life.
+                    A modern marketplace built around objects
+                    with purpose, personality and longevity.
                 </p>
 
             </div>
@@ -2439,23 +2712,19 @@ footer{
 
             <div class="footer-column">
 
-                <h4>
-                    Explore
-                </h4>
+                <h4>Explore</h4>
 
-                <a href="#shop">New drop</a>
+                <a href="#shop">Shop</a>
                 <a href="#collections">Collections</a>
-                <a href="#story">Journal</a>
-                <a href="#reviews">Community</a>
+                <a href="#edit">The Edit</a>
+                <a href="#">New arrivals</a>
 
             </div>
 
 
             <div class="footer-column">
 
-                <h4>
-                    Support
-                </h4>
+                <h4>Support</h4>
 
                 <a href="#">Shipping</a>
                 <a href="#">Returns</a>
@@ -2467,14 +2736,12 @@ footer{
 
             <div class="footer-column">
 
-                <h4>
-                    Social
-                </h4>
+                <h4>Social</h4>
 
                 <a href="#">Instagram</a>
                 <a href="#">Pinterest</a>
-                <a href="#">X / Twitter</a>
                 <a href="#">YouTube</a>
+                <a href="#">X / Twitter</a>
 
             </div>
 
@@ -2488,7 +2755,7 @@ footer{
             </span>
 
             <span>
-                Built for better choices.
+                Designed with intention.
             </span>
 
         </div>
@@ -2498,23 +2765,24 @@ footer{
 </footer>
 
 
-<!-- =========================================================
+<!-- =======================================================
      SEARCH
-========================================================= -->
+======================================================= -->
 
-<div class="search-layer" id="searchLayer">
+<div
+    class="search-overlay"
+    id="searchOverlay">
 
-    <div class="search-container">
+    <div class="search">
 
         <div class="search-head">
 
             <i class="fa-solid fa-magnifying-glass"></i>
 
             <input
-                class="search-input"
                 id="searchInput"
-                placeholder="Search the collection..."
-                type="search">
+                type="search"
+                placeholder="Search the collection...">
 
             <button
                 class="search-close"
@@ -2529,7 +2797,6 @@ footer{
         <div
             class="search-results"
             id="searchResults">
-
         </div>
 
     </div>
@@ -2537,31 +2804,30 @@ footer{
 </div>
 
 
-<!-- =========================================================
+<!-- =======================================================
      CART
-========================================================= -->
+======================================================= -->
 
 <div
-    class="drawer-backdrop"
-    id="drawerBackdrop">
+    class="cart-overlay"
+    id="cartOverlay">
 </div>
 
-
 <aside
-    class="cart-drawer"
-    id="cartDrawer">
+    class="cart"
+    id="cart">
 
     <div class="cart-header">
 
         <div>
 
-            <div class="label">
-                Your selection
+            <div class="section-number">
+                YOUR SELECTION
             </div>
 
-            <h2>
+            <div class="cart-title">
                 Shopping bag
-            </h2>
+            </div>
 
         </div>
 
@@ -2577,27 +2843,8 @@ footer{
 
 
     <div
-        class="cart-content"
-        id="cartContent">
-
-        <div class="empty-cart">
-
-            <div>
-
-                <i class="fa-solid fa-bag-shopping"></i>
-
-                <p>
-                    Your bag is empty.
-                </p>
-
-                <small>
-                    Add something worth having.
-                </small>
-
-            </div>
-
-        </div>
-
+        class="cart-items"
+        id="cartItems">
     </div>
 
 
@@ -2605,9 +2852,7 @@ footer{
 
         <div class="total">
 
-            <span>
-                Total
-            </span>
+            <span>Total</span>
 
             <span id="cartTotal">
                 $0
@@ -2615,9 +2860,13 @@ footer{
 
         </div>
 
-        <button class="primary checkout">
+        <button
+            class="btn checkout">
+
             Continue to checkout
+
             <i class="fa-solid fa-arrow-right"></i>
+
         </button>
 
     </div>
@@ -2625,48 +2874,95 @@ footer{
 </aside>
 
 
-<!-- =========================================================
-     TOAST
-========================================================= -->
+<!-- =======================================================
+     PRODUCT MODAL
+======================================================= -->
 
 <div
-    class="toast"
-    id="toast">
+    class="product-modal"
+    id="productModal">
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            id="modalClose">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <img
+            class="modal-image"
+            id="modalImage"
+            alt="">
+
+        <div class="modal-info">
+
+            <div
+                class="modal-category"
+                id="modalCategory">
+            </div>
+
+            <h2
+                class="modal-title"
+                id="modalTitle">
+            </h2>
+
+            <div
+                class="modal-price"
+                id="modalPrice">
+            </div>
+
+            <p class="modal-description">
+                A considered object selected for its
+                balance of function, material and form.
+                Designed to become part of your everyday.
+            </p>
+
+            <button
+                class="btn btn-primary modal-add"
+                id="modalAdd">
+
+                Add to bag
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
 
-<!-- =========================================================
+<!-- =======================================================
      MOBILE NAV
-========================================================= -->
+======================================================= -->
 
 <div class="mobile-nav">
 
-    <button
-        class="active"
-        onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <button id="mobileHome">
 
         <i class="fa-solid fa-house"></i>
+
         Home
-
-    </button>
-
-    <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
-
-        <i class="fa-solid fa-grid-2"></i>
-        Shop
 
     </button>
 
     <button id="mobileSearch">
 
         <i class="fa-solid fa-magnifying-glass"></i>
+
         Search
 
     </button>
 
-    <button id="mobileCart">
+    <button id="mobileBag">
 
         <i class="fa-solid fa-bag-shopping"></i>
+
         Bag
 
     </button>
@@ -2684,81 +2980,82 @@ const PRODUCTS = [
 
     {
         id:1,
-        name:"iPhone 14 Pro Max",
-        category:"phones",
+        name:"iPhone 15 Pro",
+        category:"technology",
         categoryName:"Technology",
-        price:1099,
-        oldPrice:1199,
-        badge:"NEW",
-        image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=800&q=85"
+        price:999,
+        label:"NEW",
+        image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=900&q=90"
     },
 
     {
         id:2,
-        name:'MacBook Pro 14"',
-        category:"laptops",
+        name:"MacBook Pro 14",
+        category:"workspace",
         categoryName:"Workspace",
         price:1999,
-        image:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=85"
+        label:"ESSENTIAL",
+        image:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=90"
     },
 
     {
         id:3,
-        name:"Apple Watch",
-        category:"accessories",
-        categoryName:"Accessories",
-        price:349,
-        oldPrice:399,
-        badge:"-15%",
-        image:"https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=800&q=85"
+        name:"Studio Headphones",
+        category:"audio",
+        categoryName:"Audio",
+        price:399,
+        label:"BESTSELLER",
+        image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=90"
     },
 
     {
         id:4,
-        name:"Air Max 270",
-        category:"footwear",
-        categoryName:"Footwear",
-        price:150,
-        image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=85"
+        name:"Series 04 Watch",
+        category:"fashion",
+        categoryName:"Fashion",
+        price:349,
+        label:"NEW",
+        image:"https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=900&q=90"
     },
 
     {
         id:5,
-        name:"Sony A7 IV",
-        category:"gadgets",
-        categoryName:"Audio & Tech",
-        price:2499,
-        badge:"EDITOR PICK",
-        image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=85"
+        name:"Everyday Runner",
+        category:"footwear",
+        categoryName:"Footwear",
+        price:150,
+        label:"FAVORITE",
+        image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=90"
     },
 
     {
         id:6,
-        name:"Everyday Backpack",
-        category:"accessories",
-        categoryName:"Accessories",
-        price:79,
-        oldPrice:99,
-        image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85"
+        name:"Utility Backpack",
+        category:"travel",
+        categoryName:"Travel",
+        price:129,
+        label:"ESSENTIAL",
+        image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=90"
     },
 
     {
         id:7,
-        name:"Minimal Sneakers",
-        category:"footwear",
-        categoryName:"Footwear",
-        price:129,
-        image:"https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=800&q=85"
+        name:"Minimal Camera",
+        category:"technology",
+        categoryName:"Technology",
+        price:1299,
+        label:"EDITOR'S PICK",
+        image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=90"
     },
 
     {
         id:8,
-        name:"Studio Headphones",
-        category:"gadgets",
-        categoryName:"Audio",
-        price:399,
-        badge:"BESTSELLER",
-        image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85"
+        name:"Daily Overshirt",
+        category:"fashion",
+        categoryName:"Fashion",
+        price:119,
+        label:"LIMITED",
+        image:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=90"
     }
 
 ];
@@ -2770,6 +3067,8 @@ const PRODUCTS = [
 
 let cart = [];
 
+let selectedProduct = null;
+
 
 /* =========================================================
    ELEMENTS
@@ -2778,54 +3077,48 @@ let cart = [];
 const productsEl =
     document.getElementById("products");
 
-const cartCount =
-    document.getElementById("cartCount");
+const productCount =
+    document.getElementById("productCount");
 
-const cartContent =
-    document.getElementById("cartContent");
+const bagCount =
+    document.getElementById("bagCount");
+
+const cartEl =
+    document.getElementById("cart");
+
+const cartOverlay =
+    document.getElementById("cartOverlay");
+
+const cartItems =
+    document.getElementById("cartItems");
 
 const cartTotal =
     document.getElementById("cartTotal");
 
-const resultCount =
-    document.getElementById("resultCount");
+const searchOverlay =
+    document.getElementById("searchOverlay");
 
-const toast =
-    document.getElementById("toast");
+const searchInput =
+    document.getElementById("searchInput");
 
+const searchResults =
+    document.getElementById("searchResults");
 
-/* =========================================================
-   TOAST
-========================================================= */
-
-let toastTimer;
-
-function showToast(message){
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(
-        () => toast.classList.remove("show"),
-        2200
-    );
-
-}
+const productModal =
+    document.getElementById("productModal");
 
 
 /* =========================================================
-   PRODUCTS
+   PRODUCT RENDER
 ========================================================= */
 
 function renderProducts(list){
 
     productsEl.innerHTML = "";
 
-    resultCount.textContent =
-        `${list.length} product${list.length === 1 ? "" : "s"}`;
+    productCount.textContent =
+        String(list.length).padStart(2,"0") +
+        " PRODUCTS";
 
 
     if(!list.length){
@@ -2834,7 +3127,7 @@ function renderProducts(list){
 
             <div style="
                 grid-column:1/-1;
-                padding:80px 20px;
+                padding:100px 20px;
                 text-align:center;
                 color:#777;
             ">
@@ -2842,20 +3135,810 @@ function renderProducts(list){
                 <i
                     class="fa-solid fa-box-open"
                     style="
-                        font-size:35px;
-                        color:#d7ff42;
+                        font-size:30px;
                         margin-bottom:15px;
                     ">
                 </i>
 
-                <h3 style="
-                    color:#fff;
-                    font-family:'Space Grotesk';
-                    margin-bottom:8px;
-                ">
-                    Nothing here yet
-                </h3>
-
                 <p>
-                    Try another category.
-                </
+                    No products found.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.forEach(product => {
+
+        const card =
+            document.createElement("article");
+
+        card.className = "product";
+
+        card.innerHTML = `
+
+            <div class="product-image">
+
+                <span class="product-label">
+                    ${product.label}
+                </span>
+
+                <button
+                    class="product-heart"
+                    aria-label="Wishlist">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    loading="lazy">
+
+            </div>
+
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    ${product.categoryName}
+                </div>
+
+                <div class="product-name">
+                    ${product.name}
+                </div>
+
+
+                <div class="product-bottom">
+
+                    <div class="price">
+                        $${product.price.toLocaleString()}
+                    </div>
+
+                    <button
+                        class="add"
+                        data-id="${product.id}"
+                        aria-label="Add to bag">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        card
+            .querySelector(".add")
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+                    addToCart(product.id);
+
+                }
+            );
+
+
+        card
+            .querySelector(".product-heart")
+            .addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+                    const icon =
+                        event.currentTarget.querySelector("i");
+
+                    icon.classList.toggle("fa-regular");
+                    icon.classList.toggle("fa-solid");
+
+                    event.currentTarget.style.color =
+                        icon.classList.contains("fa-solid")
+                        ? "#d8ff45"
+                        : "";
+
+                }
+            );
+
+
+        card.addEventListener(
+            "click",
+            () => openProduct(product)
+        );
+
+
+        productsEl.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+document
+    .querySelectorAll(".filter")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .querySelectorAll(".filter")
+                    .forEach(btn =>
+                        btn.classList.remove("active")
+                    );
+
+                button.classList.add("active");
+
+
+                const filter =
+                    button.dataset.filter;
+
+
+                if(filter === "all"){
+
+                    renderProducts(PRODUCTS);
+
+                }else{
+
+                    renderProducts(
+                        PRODUCTS.filter(
+                            product =>
+                                product.category === filter
+                        )
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   CATEGORY CLICK
+========================================================= */
+
+document
+    .querySelectorAll(".category")
+    .forEach(category => {
+
+        category.addEventListener(
+            "click",
+            () => {
+
+                const filter =
+                    category.dataset.filter;
+
+                const filterButton =
+                    document.querySelector(
+                        `.filter[data-filter="${filter}"]`
+                    );
+
+
+                if(filterButton){
+
+                    filterButton.click();
+
+                }
+
+
+                document
+                    .getElementById("shop")
+                    .scrollIntoView({
+                        behavior:"smooth"
+                    });
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function addToCart(id){
+
+    const product =
+        PRODUCTS.find(
+            item => item.id === id
+        );
+
+    if(!product) return;
+
+
+    const existing =
+        cart.find(
+            item => item.id === id
+        );
+
+
+    if(existing){
+
+        existing.quantity++;
+
+    }else{
+
+        cart.push({
+            ...product,
+            quantity:1
+        });
+
+    }
+
+
+    updateCart();
+
+    openCart();
+
+}
+
+
+function updateCart(){
+
+    const count =
+        cart.reduce(
+            (sum,item) =>
+                sum + item.quantity,
+            0
+        );
+
+
+    bagCount.textContent = count;
+
+
+    if(!cart.length){
+
+        cartItems.innerHTML = `
+
+            <div class="empty">
+
+                <div>
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                    <p>
+                        Your bag is empty.
+                    </p>
+
+                    <small>
+                        Start with something worth keeping.
+                    </small>
+
+                </div>
+
+            </div>
+
+        `;
+
+        cartTotal.textContent = "$0";
+
+        return;
+
+    }
+
+
+    cartItems.innerHTML = "";
+
+    let total = 0;
+
+
+    cart.forEach(item => {
+
+        total +=
+            item.price * item.quantity;
+
+
+        const row =
+            document.createElement("div");
+
+        row.className = "cart-item";
+
+        row.innerHTML = `
+
+            <img
+                src="${item.image}"
+                alt="${item.name}">
+
+            <div>
+
+                <div class="cart-item-name">
+                    ${item.name}
+                </div>
+
+                <div class="cart-item-price">
+                    $${item.price.toLocaleString()}
+                    × ${item.quantity}
+                </div>
+
+            </div>
+
+            <button
+                class="remove"
+                data-id="${item.id}">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        `;
+
+
+        row
+            .querySelector(".remove")
+            .addEventListener(
+                "click",
+                () => {
+
+                    cart =
+                        cart.filter(
+                            item =>
+                                item.id !== Number(
+                                    row
+                                        .querySelector(".remove")
+                                        .dataset.id
+                                )
+                        );
+
+                    updateCart();
+
+                }
+            );
+
+
+        cartItems.appendChild(row);
+
+    });
+
+
+    cartTotal.textContent =
+        "$" + total.toLocaleString();
+
+}
+
+
+function openCart(){
+
+    cartEl.classList.add("open");
+
+    cartOverlay.classList.add("open");
+
+    document.body.classList.add("no-scroll");
+
+}
+
+
+function closeCart(){
+
+    cartEl.classList.remove("open");
+
+    cartOverlay.classList.remove("open");
+
+    document.body.classList.remove("no-scroll");
+
+}
+
+
+document
+    .getElementById("bagButton")
+    .addEventListener(
+        "click",
+        openCart
+    );
+
+
+document
+    .getElementById("mobileBag")
+    .addEventListener(
+        "click",
+        openCart
+    );
+
+
+document
+    .getElementById("cartClose")
+    .addEventListener(
+        "click",
+        closeCart
+    );
+
+
+cartOverlay.addEventListener(
+    "click",
+    closeCart
+);
+
+
+/* =========================================================
+   PRODUCT MODAL
+========================================================= */
+
+function openProduct(product){
+
+    selectedProduct = product;
+
+    document
+        .getElementById("modalImage")
+        .src = product.image;
+
+    document
+        .getElementById("modalImage")
+        .alt = product.name;
+
+    document
+        .getElementById("modalCategory")
+        .textContent = product.categoryName;
+
+    document
+        .getElementById("modalTitle")
+        .textContent = product.name;
+
+    document
+        .getElementById("modalPrice")
+        .textContent =
+            "$" + product.price.toLocaleString();
+
+
+    productModal.classList.add("open");
+
+    document.body.classList.add("no-scroll");
+
+}
+
+
+function closeProduct(){
+
+    productModal.classList.remove("open");
+
+    document.body.classList.remove("no-scroll");
+
+}
+
+
+document
+    .getElementById("modalClose")
+    .addEventListener(
+        "click",
+        closeProduct
+    );
+
+
+productModal.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === productModal){
+
+            closeProduct();
+
+        }
+
+    }
+);
+
+
+document
+    .getElementById("modalAdd")
+    .addEventListener(
+        "click",
+        () => {
+
+            if(selectedProduct){
+
+                addToCart(selectedProduct.id);
+
+                closeProduct();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function openSearch(){
+
+    searchOverlay.classList.add("open");
+
+    document.body.classList.add("no-scroll");
+
+    setTimeout(
+        () => searchInput.focus(),
+        100
+    );
+
+}
+
+
+function closeSearch(){
+
+    searchOverlay.classList.remove("open");
+
+    document.body.classList.remove("no-scroll");
+
+    searchInput.value = "";
+
+    searchResults.innerHTML = "";
+
+}
+
+
+document
+    .getElementById("searchButton")
+    .addEventListener(
+        "click",
+        openSearch
+    );
+
+
+document
+    .getElementById("mobileSearch")
+    .addEventListener(
+        "click",
+        openSearch
+    );
+
+
+document
+    .getElementById("searchClose")
+    .addEventListener(
+        "click",
+        closeSearch
+    );
+
+
+searchOverlay.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === searchOverlay){
+
+            closeSearch();
+
+        }
+
+    }
+);
+
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const query =
+            searchInput.value
+                .trim()
+                .toLowerCase();
+
+
+        if(!query){
+
+            searchResults.innerHTML = "";
+
+            return;
+
+        }
+
+
+        const results =
+            PRODUCTS.filter(product =>
+
+                product.name
+                    .toLowerCase()
+                    .includes(query)
+
+                ||
+
+                product.categoryName
+                    .toLowerCase()
+                    .includes(query)
+
+            );
+
+
+        if(!results.length){
+
+            searchResults.innerHTML = `
+
+                <div
+                    style="
+                        padding:35px 25px;
+                        color:#666;
+                        font-size:12px;
+                    ">
+
+                    Nothing matched "${query}".
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        searchResults.innerHTML =
+            results.map(product => `
+
+                <div
+                    class="search-result"
+                    data-id="${product.id}">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}">
+
+                    <div class="search-result-info">
+
+                        <div class="search-result-name">
+                            ${product.name}
+                        </div>
+
+                        <div class="search-result-category">
+                            ${product.categoryName}
+                        </div>
+
+                    </div>
+
+                    <strong>
+                        $${product.price.toLocaleString()}
+                    </strong>
+
+                </div>
+
+            `).join("");
+
+
+        document
+            .querySelectorAll(".search-result")
+            .forEach(result => {
+
+                result.addEventListener(
+                    "click",
+                    () => {
+
+                        const product =
+                            PRODUCTS.find(
+                                item =>
+                                    item.id === Number(
+                                        result.dataset.id
+                                    )
+                            );
+
+                        closeSearch();
+
+                        if(product){
+
+                            openProduct(product);
+
+                        }
+
+                    }
+                );
+
+            });
+
+    }
+);
+
+
+/* =========================================================
+   HERO ACTIONS
+========================================================= */
+
+document
+    .getElementById("heroShop")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("shop")
+                .scrollIntoView({
+                    behavior:"smooth"
+                });
+
+        }
+    );
+
+
+document
+    .getElementById("heroEdit")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("edit")
+                .scrollIntoView({
+                    behavior:"smooth"
+                });
+
+        }
+    );
+
+
+document
+    .getElementById("featureButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            document
+                .getElementById("shop")
+                .scrollIntoView({
+                    behavior:"smooth"
+                });
+
+        }
+    );
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Escape"){
+
+            closeSearch();
+
+            closeCart();
+
+            closeProduct();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+document
+    .getElementById("year")
+    .textContent =
+        new Date().getFullYear();
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+renderProducts(PRODUCTS);
+
+updateCart();
+
+</script>
+
+</body>
+</html>
