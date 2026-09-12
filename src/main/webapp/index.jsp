@@ -6,4088 +6,2717 @@
 
 <title>NEXUS — Curated Living</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 
+<style>
 :root{
-    --bg:#08090b;
-    --surface:#101216;
-    --surface2:#17191e;
-    --surface3:#20232a;
-    --text:#f5f5f2;
-    --muted:#92959e;
-    --border:rgba(255,255,255,.09);
-    --accent:#c8ff45;
-    --white:#fff;
-    --max:1380px;
+  --cream:#f4f0e8;
+  --paper:#faf8f3;
+  --white:#fff;
+  --black:#171714;
+  --muted:#77736a;
+  --line:#ddd8ce;
+  --accent:#b66b42;
+  --green:#58634e;
+  --serif:"Playfair Display",serif;
+  --sans:"DM Sans",sans-serif;
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:"DM Sans",sans-serif;
-    overflow-x:hidden;
-}
-
-body:before{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    left:-250px;
-    top:200px;
-    background:rgba(200,255,69,.055);
-    filter:blur(120px);
-    border-radius:50%;
-    pointer-events:none;
-    z-index:-1;
-}
-
-body:after{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    right:-250px;
-    top:900px;
-    background:rgba(100,255,210,.04);
-    filter:blur(120px);
-    border-radius:50%;
-    pointer-events:none;
-    z-index:-1;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
+  background:var(--paper);
+  color:var(--black);
+  font-family:var(--sans);
+  overflow-x:hidden;
 }
 
 button,
-input,
-select{
-    font:inherit;
+input{
+  font:inherit;
 }
 
 button{
-    cursor:pointer;
+  cursor:pointer;
 }
 
-.container{
-    width:min(var(--max),calc(100% - 48px));
-    margin:auto;
+img{
+  width:100%;
+  display:block;
 }
 
-/* =====================================
-   NAVIGATION
-===================================== */
+a{
+  color:inherit;
+  text-decoration:none;
+}
 
-.nav-wrapper{
-    position:fixed;
-    width:100%;
-    top:18px;
-    z-index:1000;
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar{
+  background:var(--black);
+  color:#fff;
+  height:34px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  position:relative;
+  z-index:20;
+  background:rgba(250,248,243,.94);
+  border-bottom:1px solid var(--line);
 }
 
 .nav{
-    width:min(1250px,calc(100% - 30px));
-    margin:auto;
-    height:62px;
-    padding:8px 10px 8px 18px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    background:rgba(9,10,13,.78);
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
-
-    border:1px solid var(--border);
-    border-radius:100px;
-
-    box-shadow:0 20px 60px rgba(0,0,0,.3);
+  height:82px;
+  max-width:1440px;
+  margin:auto;
+  padding:0 42px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    font-family:"Space Grotesk";
-    font-weight:700;
-    letter-spacing:-.04em;
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:7px;
 }
 
-.logo-icon{
-    width:36px;
-    height:36px;
-
-    border-radius:50%;
-
-    background:var(--accent);
-    color:#050505;
-
-    display:grid;
-    place-items:center;
-
-    font-weight:800;
+.logo span{
+  font-family:var(--serif);
+  font-weight:500;
+  letter-spacing:0;
 }
 
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:30px;
-
-    color:#a9abb2;
-    font-size:13px;
+.nav-center{
+  display:flex;
+  gap:34px;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
 }
 
-.nav-links a{
-    transition:.25s;
+.nav-center a{
+  position:relative;
 }
 
-.nav-links a:hover{
-    color:#fff;
+.nav-center a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-8px;
+  width:0;
+  height:1px;
+  background:var(--black);
+  transition:.3s;
 }
 
-.nav-actions{
-    display:flex;
-    align-items:center;
-    gap:7px;
+.nav-center a:hover::after{
+  width:100%;
 }
 
-.icon-button{
-    width:40px;
-    height:40px;
-
-    display:grid;
-    place-items:center;
-
-    border:1px solid var(--border);
-    border-radius:50%;
-
-    color:#fff;
-    background:rgba(255,255,255,.04);
-
-    transition:.25s;
+.nav-right{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:10px;
 }
 
-.icon-button:hover{
-    background:#fff;
-    color:#000;
-    transform:translateY(-2px);
+.icon-btn{
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  background:transparent;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.3s;
 }
 
-.cart-button{
-    position:relative;
+.icon-btn:hover{
+  background:var(--black);
+  color:#fff;
 }
 
 .cart-count{
-    position:absolute;
-    width:17px;
-    height:17px;
-
-    right:-2px;
-    top:-3px;
-
-    display:grid;
-    place-items:center;
-
-    background:var(--accent);
-    color:#000;
-
-    border-radius:50%;
-    font-size:9px;
-    font-weight:800;
+  position:absolute;
+  margin:-32px 0 0 28px;
+  width:17px;
+  height:17px;
+  background:var(--accent);
+  color:white;
+  border-radius:50%;
+  font-size:9px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* =====================================
+/* =========================
    HERO
-===================================== */
+========================= */
 
 .hero{
-    min-height:100vh;
-    padding:145px 0 70px;
-
-    display:flex;
-    align-items:center;
+  max-width:1440px;
+  margin:auto;
+  padding:30px 42px 80px;
 }
 
 .hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    gap:18px;
+  min-height:650px;
+  display:grid;
+  grid-template-columns:42% 58%;
+  gap:30px;
 }
 
-.hero-left{
-    min-height:650px;
-
-    padding:70px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    position:relative;
-    overflow:hidden;
-
-    border:1px solid var(--border);
-    border-radius:34px;
-
-    background:
-        radial-gradient(
-            circle at 80% 15%,
-            rgba(200,255,69,.10),
-            transparent 30%
-        ),
-        linear-gradient(
-            145deg,
-            #14161b,
-            #090a0d
-        );
+.hero-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:30px 30px 30px 5%;
 }
 
 .eyebrow{
-    width:max-content;
-
-    padding:7px 11px;
-
-    border:1px solid var(--border);
-    border-radius:100px;
-
-    color:var(--accent);
-
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:.16em;
-
-    margin-bottom:25px;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:24px;
 }
 
-.hero-title{
-    font-family:"Space Grotesk";
-
-    font-size:clamp(58px,7vw,110px);
-    line-height:.87;
-
-    letter-spacing:-.075em;
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(64px,7vw,112px);
+  line-height:.88;
+  font-weight:500;
+  letter-spacing:-4px;
 }
 
-.hero-title span{
-    color:var(--accent);
+.hero h1 em{
+  color:var(--accent);
+  font-weight:500;
 }
 
-.hero-description{
-    max-width:500px;
-
-    margin-top:30px;
-
-    color:var(--muted);
-
-    line-height:1.75;
-    font-size:15px;
+.hero-text{
+  max-width:380px;
+  margin-top:35px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.8;
 }
 
-.hero-buttons{
-    display:flex;
-    gap:10px;
-
-    margin-top:32px;
-
-    flex-wrap:wrap;
+.hero-actions{
+  display:flex;
+  gap:12px;
+  margin-top:35px;
 }
 
-.primary-button{
-    padding:14px 20px;
-
-    border:0;
-    border-radius:100px;
-
-    background:#fff;
-    color:#000;
-
-    font-size:13px;
-    font-weight:700;
-
-    transition:.25s;
+.btn{
+  border:1px solid var(--black);
+  padding:15px 26px;
+  background:var(--black);
+  color:#fff;
+  text-transform:uppercase;
+  letter-spacing:1.3px;
+  font-size:10px;
+  transition:.3s;
 }
 
-.primary-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 15px 40px rgba(255,255,255,.15);
+.btn:hover{
+  background:transparent;
+  color:var(--black);
 }
 
-.secondary-button{
-    padding:14px 20px;
-
-    border:1px solid var(--border);
-    border-radius:100px;
-
-    background:transparent;
-    color:#fff;
-
-    font-size:13px;
+.btn-light{
+  background:transparent;
+  color:var(--black);
 }
 
-.secondary-button:hover{
-    background:#fff;
-    color:#000;
+.btn-light:hover{
+  background:var(--black);
+  color:#fff;
 }
 
-.hero-circle{
-    position:absolute;
-
-    width:360px;
-    height:360px;
-
-    right:-100px;
-    bottom:-140px;
-
-    border:1px solid rgba(200,255,69,.2);
-
-    border-radius:50%;
+.hero-image{
+  position:relative;
+  overflow:hidden;
+  min-height:650px;
 }
 
-.hero-circle:before{
-    content:"";
-
-    position:absolute;
-
-    inset:45px;
-
-    border:1px solid rgba(200,255,69,.13);
-
-    border-radius:50%;
+.hero-image img{
+  height:100%;
+  object-fit:cover;
 }
 
-.hero-circle:after{
-    content:"";
-
-    position:absolute;
-
-    inset:90px;
-
-    border:1px solid rgba(200,255,69,.1);
-
-    border-radius:50%;
+.hero-label{
+  position:absolute;
+  right:24px;
+  bottom:24px;
+  background:var(--paper);
+  padding:20px 24px;
+  width:220px;
 }
 
-/* HERO VISUAL */
-
-.hero-right{
-    min-height:650px;
-
-    position:relative;
-    overflow:hidden;
-
-    border:1px solid var(--border);
-    border-radius:34px;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(255,255,255,.06),
-            transparent 40%
-        ),
-        #101216;
+.hero-label small{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--muted);
 }
 
-.hero-orbit{
-    position:absolute;
-
-    width:520px;
-    height:520px;
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    border:1px solid rgba(255,255,255,.07);
-    border-radius:50%;
+.hero-label strong{
+  display:block;
+  margin-top:7px;
+  font-family:var(--serif);
+  font-size:22px;
+  font-weight:500;
 }
 
-.hero-orbit:before{
-    content:"";
+/* =========================
+   INTRO STRIP
+========================= */
 
-    position:absolute;
-    inset:55px;
-
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:50%;
+.intro{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:28px 42px;
 }
 
-.hero-product{
-    position:absolute;
-
-    width:360px;
-    height:360px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            #fff,
-            #c9cbcb 27%,
-            #686c6d 58%,
-            #121416 78%
-        );
-
-    box-shadow:
-        35px 45px 90px rgba(0,0,0,.65),
-        inset -40px -45px 60px rgba(0,0,0,.35);
-
-    animation:heroFloat 6s ease-in-out infinite;
+.intro-inner{
+  max-width:1440px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
 }
 
-.hero-product:after{
-    content:"";
-
-    position:absolute;
-
-    width:150px;
-    height:150px;
-
-    left:55px;
-    top:50px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.35);
-
-    filter:blur(35px);
+.intro-text{
+  font-family:var(--serif);
+  font-size:24px;
 }
 
-@keyframes heroFloat{
-
-    0%,100%{
-        transform:translate(-50%,-50%) rotate(-3deg);
-    }
-
-    50%{
-        transform:translate(-50%,-56%) rotate(3deg);
-    }
+.intro-meta{
+  display:flex;
+  gap:30px;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  color:var(--muted);
 }
 
-.hero-product-label{
-    position:absolute;
-
-    bottom:25px;
-    left:25px;
-
-    padding:15px 18px;
-
-    background:rgba(0,0,0,.4);
-
-    border:1px solid var(--border);
-    border-radius:17px;
-
-    backdrop-filter:blur(15px);
-}
-
-.hero-product-label small{
-    display:block;
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    margin-bottom:5px;
-}
-
-.hero-product-label strong{
-    font-family:"Space Grotesk";
-}
-
-/* =====================================
-   MARQUEE
-===================================== */
-
-.marquee{
-    overflow:hidden;
-
-    border-top:1px solid var(--border);
-    border-bottom:1px solid var(--border);
-
-    padding:19px 0;
-
-    white-space:nowrap;
-}
-
-.marquee-track{
-    display:inline-flex;
-    align-items:center;
-
-    gap:40px;
-
-    animation:marquee 28s linear infinite;
-}
-
-.marquee span{
-    color:#686b73;
-
-    font-family:"Space Grotesk";
-
-    font-size:12px;
-
-    letter-spacing:.17em;
-    text-transform:uppercase;
-}
-
-.marquee .dot{
-    color:var(--accent);
-}
-
-@keyframes marquee{
-    from{
-        transform:translateX(0);
-    }
-
-    to{
-        transform:translateX(-50%);
-    }
-}
-
-/* =====================================
-   SECTIONS
-===================================== */
+/* =========================
+   SECTION
+========================= */
 
 .section{
-    padding:120px 0;
+  max-width:1440px;
+  margin:auto;
+  padding:110px 42px;
 }
 
-.section-heading{
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-
-    gap:30px;
-
-    margin-bottom:42px;
-}
-
-.section-number{
-    color:var(--accent);
-
-    font-size:10px;
-
-    text-transform:uppercase;
-    letter-spacing:.15em;
-
-    margin-bottom:12px;
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:45px;
 }
 
 .section-title{
-    font-family:"Space Grotesk";
-
-    font-size:clamp(42px,5vw,70px);
-
-    line-height:.92;
-
-    letter-spacing:-.06em;
+  font-family:var(--serif);
+  font-size:58px;
+  line-height:1;
+  font-weight:500;
 }
 
-.section-description{
-    max-width:430px;
-
-    color:var(--muted);
-
-    line-height:1.7;
-
-    font-size:14px;
+.section-title span{
+  color:var(--muted);
+  font-style:italic;
 }
 
-/* =====================================
+.section-link{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  border-bottom:1px solid var(--black);
+  padding-bottom:7px;
+}
+
+/* =========================
    COLLECTIONS
-===================================== */
+========================= */
 
-.collection-grid{
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:16px;
+.collections{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:16px;
 }
 
 .collection{
-    min-height:450px;
-
-    position:relative;
-    overflow:hidden;
-
-    padding:25px;
-
-    border:1px solid var(--border);
-    border-radius:25px;
-
-    background:#111318;
-
-    transition:.35s;
-}
-
-.collection:hover{
-    transform:translateY(-7px);
-    border-color:rgba(200,255,69,.25);
+  position:relative;
+  height:520px;
+  overflow:hidden;
+  background:#ddd;
 }
 
 .collection:nth-child(2){
-    min-height:520px;
+  margin-top:65px;
+  height:455px;
 }
 
 .collection:nth-child(3){
-    min-height:480px;
+  margin-top:130px;
+  height:390px;
 }
 
-.collection-visual{
-    position:absolute;
-
-    width:270px;
-    height:270px;
-
-    right:-50px;
-    top:50%;
-
-    transform:translateY(-50%) rotate(15deg);
-
-    border-radius:45%;
-
-    background:
-        linear-gradient(
-            145deg,
-            #f1f2ef,
-            #85898b 45%,
-            #292b2d
-        );
-
-    box-shadow:30px 35px 60px rgba(0,0,0,.5);
+.collection img{
+  height:100%;
+  object-fit:cover;
+  transition:transform .7s ease;
 }
 
-.collection:nth-child(2) .collection-visual{
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            145deg,
-            #d8ff74,
-            #71833c,
-            #20251a
-        );
+.collection:hover img{
+  transform:scale(1.05);
 }
 
-.collection:nth-child(3) .collection-visual{
-    transform:translateY(-50%) rotate(-15deg);
-
-    background:
-        linear-gradient(
-            145deg,
-            #e9e9e9,
-            #6e7072,
-            #202124
-        );
+.collection-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:30px;
+  background:linear-gradient(transparent 45%,rgba(0,0,0,.55));
+  color:#fff;
 }
 
-.collection-info{
-    position:absolute;
-
-    bottom:25px;
-    left:25px;
+.collection-number{
+  font-size:10px;
+  letter-spacing:2px;
+  margin-bottom:8px;
 }
 
-.collection-info h3{
-    font-family:"Space Grotesk";
-
-    font-size:30px;
-
-    letter-spacing:-.04em;
+.collection-title{
+  font-family:var(--serif);
+  font-size:34px;
 }
 
-.collection-info p{
-    color:var(--muted);
-
-    font-size:13px;
-
-    margin-top:6px;
-}
-
-/* =====================================
+/* =========================
    SHOP
-===================================== */
+========================= */
+
+.shop{
+  background:var(--cream);
+  max-width:none;
+}
+
+.shop-inner{
+  max-width:1440px;
+  margin:auto;
+  padding:110px 42px;
+}
 
 .shop-toolbar{
-    display:flex;
-
-    align-items:center;
-    justify-content:space-between;
-
-    gap:20px;
-
-    margin-bottom:28px;
-
-    flex-wrap:wrap;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:16px 0;
+  margin-bottom:38px;
 }
 
 .filters{
-    display:flex;
-
-    gap:7px;
-
-    flex-wrap:wrap;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
 .filter{
-    border:1px solid var(--border);
-
-    background:transparent;
-
-    color:#999ca4;
-
-    padding:9px 15px;
-
-    border-radius:100px;
-
-    font-size:11px;
-
-    transition:.2s;
+  border:1px solid var(--line);
+  background:transparent;
+  padding:9px 15px;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  transition:.2s;
 }
 
 .filter:hover,
 .filter.active{
-    background:var(--accent);
-
-    border-color:var(--accent);
-
-    color:#000;
+  background:var(--black);
+  border-color:var(--black);
+  color:#fff;
 }
 
 .sort{
-    border:1px solid var(--border);
-
-    border-radius:100px;
-
-    padding:10px 15px;
-
-    background:var(--surface);
-
-    color:#fff;
-
-    outline:none;
+  border:0;
+  background:transparent;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  outline:none;
 }
 
-/* =====================================
-   PRODUCT GRID
-===================================== */
-
 .products{
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:17px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
 }
 
 .product{
-    min-width:0;
-
-    opacity:1 !important;
-    visibility:visible !important;
-
-    transform:none !important;
-
-    transition:transform .3s ease;
-}
-
-.product:hover{
-    transform:translateY(-4px) !important;
+  position:relative;
+  min-width:0;
 }
 
 .product-image{
-    width:100%;
-
-    aspect-ratio:1 / 1.1;
-
-    position:relative;
-
-    overflow:hidden;
-
-    border:1px solid var(--border);
-
-    border-radius:23px;
-
-    background:#15171c;
+  position:relative;
+  height:420px;
+  overflow:hidden;
+  background:#e5e0d7;
 }
 
 .product-image img{
-    width:100%;
-    height:100%;
-
-    display:block;
-
-    object-fit:cover;
-
-    transition:
-        transform .5s ease,
-        filter .5s ease;
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s ease;
 }
 
 .product:hover .product-image img{
-    transform:scale(1.06);
+  transform:scale(1.04);
 }
 
 .product-tag{
-    position:absolute;
-
-    left:12px;
-    top:12px;
-
-    z-index:3;
-
-    padding:6px 8px;
-
-    border-radius:7px;
-
-    background:var(--accent);
-
-    color:#000;
-
-    font-size:9px;
-
-    text-transform:uppercase;
-
-    letter-spacing:.1em;
-
-    font-weight:800;
+  position:absolute;
+  top:15px;
+  left:15px;
+  background:#fff;
+  padding:7px 10px;
+  font-size:9px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-.product-wishlist{
-    position:absolute;
-
-    right:12px;
-    top:12px;
-
-    z-index:3;
-
-    width:35px;
-    height:35px;
-
-    border:1px solid var(--border);
-
-    border-radius:50%;
-
-    background:rgba(0,0,0,.45);
-
-    color:#fff;
-
-    backdrop-filter:blur(10px);
-
-    transition:.2s;
+.wishlist{
+  position:absolute;
+  top:13px;
+  right:13px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:#fff;
+  font-size:17px;
 }
 
-.product-wishlist:hover{
-    background:#fff;
-    color:#000;
+.wishlist.active{
+  color:var(--accent);
+}
+
+.add{
+  position:absolute;
+  bottom:14px;
+  left:14px;
+  right:14px;
+  border:0;
+  background:var(--black);
+  color:#fff;
+  padding:13px;
+  text-transform:uppercase;
+  font-size:9px;
+  letter-spacing:1.5px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:.3s;
+}
+
+.product:hover .add{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .product-info{
-    padding:15px 3px 0;
-
-    display:block !important;
-
-    opacity:1 !important;
-    visibility:visible !important;
-}
-
-.product-top{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-}
-
-.product-name{
-    font-family:"Space Grotesk";
-
-    font-size:15px;
-
-    font-weight:600;
-}
-
-.product-price{
-    font-weight:700;
-
-    font-size:14px;
-
-    white-space:nowrap;
+  padding:18px 2px 0;
 }
 
 .product-category{
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  font-size:9px;
+  letter-spacing:1.4px;
 }
 
-.add-product{
-    width:100%;
-
-    margin-top:12px;
-
-    padding:11px;
-
-    border:1px solid var(--border);
-
-    border-radius:12px;
-
-    background:transparent;
-
-    color:#fff;
-
-    font-size:11px;
-
-    transition:.25s;
+.product-name{
+  font-family:var(--serif);
+  font-size:23px;
+  margin-top:5px;
 }
 
-.add-product:hover{
-    background:#fff;
-
-    color:#000;
+.product-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:8px;
 }
 
-/* =====================================
-   STORY
-===================================== */
+.price{
+  font-size:12px;
+  font-weight:600;
+}
+
+.product-note{
+  color:var(--muted);
+  font-size:10px;
+}
+
+/* =========================
+   FEATURE STORY
+========================= */
+
+.story{
+  max-width:1440px;
+  margin:auto;
+  padding:120px 42px;
+}
 
 .story-grid{
-    display:grid;
-
-    grid-template-columns:.85fr 1.15fr;
-
-    gap:17px;
+  display:grid;
+  grid-template-columns:55% 45%;
+  min-height:650px;
 }
 
 .story-image{
-    min-height:620px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    border:1px solid var(--border);
-
-    border-radius:28px;
-
-    background:
-        radial-gradient(
-            circle at 25% 30%,
-            rgba(200,255,69,.13),
-            transparent 30%
-        ),
-        #111318;
+  overflow:hidden;
 }
 
-.story-object{
-    position:absolute;
-
-    width:260px;
-    height:460px;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%) rotate(17deg);
-
-    border-radius:140px;
-
-    background:
-        linear-gradient(
-            120deg,
-            #eeeeeb,
-            #999d9e 40%,
-            #333638
-        );
-
-    box-shadow:
-        35px 45px 80px rgba(0,0,0,.6);
+.story-image img{
+  height:100%;
+  object-fit:cover;
 }
 
-.story-object:after{
-    content:"";
-
-    position:absolute;
-
-    width:100px;
-    height:100px;
-
-    top:70px;
-    left:45px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.35);
-
-    filter:blur(25px);
+.story-copy{
+  background:var(--green);
+  color:#fff;
+  padding:80px 9%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 
-.story-content{
-    min-height:620px;
-
-    padding:60px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    border:1px solid var(--border);
-
-    border-radius:28px;
-
-    background:var(--surface);
+.story-copy .eyebrow{
+  color:#d5d8ce;
 }
 
-.story-content h2{
-    font-family:"Space Grotesk";
-
-    font-size:clamp(45px,5vw,72px);
-
-    line-height:.93;
-
-    letter-spacing:-.06em;
+.story-copy h2{
+  font-family:var(--serif);
+  font-size:64px;
+  line-height:.95;
+  font-weight:500;
 }
 
-.story-content h2 span{
-    color:var(--accent);
+.story-copy p{
+  margin-top:30px;
+  max-width:420px;
+  line-height:1.8;
+  color:#e1e3dd;
+  font-size:14px;
 }
 
-.story-content p{
-    max-width:540px;
-
-    margin:25px 0;
-
-    color:var(--muted);
-
-    line-height:1.8;
-
-    font-size:14px;
+.story-copy .btn{
+  width:max-content;
+  margin-top:32px;
+  border-color:#fff;
 }
 
-.features{
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:20px;
-
-    margin-top:10px;
+.story-copy .btn:hover{
+  background:#fff;
+  color:var(--green);
 }
 
-.feature{
-    border-top:1px solid var(--border);
+/* =========================
+   FEATURED STATEMENT
+========================= */
 
-    padding-top:14px;
+.statement{
+  text-align:center;
+  padding:100px 20px;
+  border-top:1px solid var(--line);
 }
 
-.feature strong{
-    display:block;
-
-    font-size:13px;
-
-    margin-bottom:5px;
+.statement p{
+  max-width:900px;
+  margin:auto;
+  font-family:var(--serif);
+  font-size:clamp(34px,4.5vw,65px);
+  line-height:1.12;
 }
 
-.feature span{
-    color:var(--muted);
-
-    font-size:11px;
+.statement em{
+  color:var(--accent);
 }
 
-/* =====================================
+/* =========================
    DEAL
-===================================== */
+========================= */
 
 .deal{
-    padding:60px;
-
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:40px;
-
-    overflow:hidden;
-
-    border:1px solid var(--border);
-
-    border-radius:30px;
-
-    background:
-        radial-gradient(
-            circle at 85% 50%,
-            rgba(200,255,69,.14),
-            transparent 27%
-        ),
-        #111318;
+  background:var(--black);
+  color:#fff;
+  padding:100px 42px;
 }
 
-.deal-title{
-    font-family:"Space Grotesk";
-
-    font-size:clamp(43px,5vw,72px);
-
-    line-height:.9;
-
-    letter-spacing:-.06em;
+.deal-inner{
+  max-width:1200px;
+  margin:auto;
+  text-align:center;
 }
 
-.deal-title span{
-    color:var(--accent);
+.deal h2{
+  font-family:var(--serif);
+  font-size:70px;
+  font-weight:500;
 }
 
-.deal-description{
-    max-width:520px;
-
-    margin-top:18px;
-
-    color:var(--muted);
-
-    line-height:1.7;
-
-    font-size:13px;
+.deal p{
+  color:#aaa;
+  margin:15px auto 35px;
+  max-width:450px;
+  line-height:1.7;
 }
 
 .timer{
-    display:flex;
-
-    gap:9px;
-
-    flex-shrink:0;
+  display:flex;
+  justify-content:center;
+  gap:14px;
 }
 
-.timer-box{
-    width:78px;
-    height:88px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    border:1px solid var(--border);
-
-    border-radius:17px;
-
-    background:rgba(0,0,0,.3);
+.time{
+  width:85px;
+  border:1px solid #393939;
+  padding:15px;
 }
 
-.timer-box strong{
-    display:block;
-
-    font-family:"Space Grotesk";
-
-    font-size:27px;
+.time strong{
+  display:block;
+  font-family:var(--serif);
+  font-size:30px;
 }
 
-.timer-box span{
-    display:block;
-
-    margin-top:3px;
-
-    color:var(--muted);
-
-    font-size:8px;
-
-    text-transform:uppercase;
+.time span{
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:#888;
 }
 
-/* =====================================
+/* =========================
    REVIEWS
-===================================== */
+========================= */
 
 .reviews{
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:16px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .review{
-    padding:28px;
-
-    border:1px solid var(--border);
-
-    border-radius:22px;
-
-    background:var(--surface);
+  border-top:1px solid var(--line);
+  padding-top:25px;
 }
 
 .stars{
-    color:var(--accent);
-
-    letter-spacing:4px;
-
-    margin-bottom:20px;
+  letter-spacing:3px;
+  font-size:11px;
 }
 
-.review-text{
-    color:#d1d2d5;
-
-    font-size:13px;
-
-    line-height:1.75;
+.review p{
+  font-family:var(--serif);
+  font-size:25px;
+  line-height:1.35;
+  margin:25px 0;
 }
 
-.reviewer{
-    display:flex;
-
-    align-items:center;
-
-    gap:11px;
-
-    margin-top:25px;
+.review small{
+  color:var(--muted);
+  text-transform:uppercase;
+  font-size:9px;
+  letter-spacing:1.4px;
 }
 
-.avatar{
-    width:40px;
-    height:40px;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            145deg,
-            #d8d8d8,
-            #4c4e50
-        );
-}
-
-.reviewer strong{
-    display:block;
-
-    font-size:12px;
-}
-
-.reviewer span{
-    display:block;
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    margin-top:3px;
-}
-
-/* =====================================
+/* =========================
    NEWSLETTER
-===================================== */
+========================= */
 
 .newsletter{
-    padding:100px 20px;
-
-    text-align:center;
-
-    border-top:1px solid var(--border);
-    border-bottom:1px solid var(--border);
+  background:#e8e2d6;
+  padding:90px 30px;
+  text-align:center;
 }
 
 .newsletter h2{
-    font-family:"Space Grotesk";
-
-    font-size:clamp(45px,6vw,80px);
-
-    line-height:.9;
-
-    letter-spacing:-.06em;
+  font-family:var(--serif);
+  font-size:56px;
+  font-weight:500;
 }
 
 .newsletter p{
-    max-width:500px;
-
-    margin:20px auto 30px;
-
-    color:var(--muted);
-
-    line-height:1.7;
-
-    font-size:13px;
+  margin:14px auto 30px;
+  color:var(--muted);
+  max-width:450px;
+  line-height:1.6;
 }
 
-.email-form{
-    max-width:500px;
-
-    margin:auto;
-
-    display:flex;
-
-    padding:5px;
-
-    border:1px solid var(--border);
-
-    border-radius:100px;
-
-    background:var(--surface);
+.newsletter-form{
+  max-width:500px;
+  margin:auto;
+  display:flex;
+  border-bottom:1px solid var(--black);
 }
 
-.email-form input{
-    flex:1;
-
-    min-width:0;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-
-    color:#fff;
-
-    padding:0 17px;
+.newsletter-form input{
+  flex:1;
+  border:0;
+  background:transparent;
+  outline:none;
+  padding:15px 0;
 }
 
-.email-form button{
-    border:0;
-
-    padding:13px 20px;
-
-    border-radius:100px;
-
-    background:var(--accent);
-
-    color:#000;
-
-    font-size:12px;
-
-    font-weight:800;
+.newsletter-form button{
+  border:0;
+  background:transparent;
+  text-transform:uppercase;
+  font-size:9px;
+  letter-spacing:1.4px;
 }
 
-/* =====================================
+/* =========================
    FOOTER
-===================================== */
+========================= */
 
 footer{
-    padding:70px 0 30px;
+  background:var(--paper);
+  padding:70px 42px 30px;
 }
 
 .footer-grid{
-    display:grid;
-
-    grid-template-columns:1.5fr repeat(3,1fr);
-
-    gap:40px;
+  max-width:1440px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;
+  padding-bottom:60px;
 }
 
-.footer-description{
-    max-width:300px;
-
-    margin-top:18px;
-
-    color:var(--muted);
-
-    line-height:1.7;
-
-    font-size:12px;
+.footer-brand .logo{
+  font-size:28px;
 }
 
-.footer-title{
-    margin-bottom:18px;
-
-    font-size:10px;
-
-    letter-spacing:.14em;
-
-    text-transform:uppercase;
+.footer-brand p{
+  max-width:300px;
+  color:var(--muted);
+  line-height:1.7;
+  margin-top:20px;
+  font-size:13px;
 }
 
-.footer-links a{
-    display:block;
-
-    margin-bottom:11px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    transition:.2s;
+.footer-col h4{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin-bottom:20px;
 }
 
-.footer-links a:hover{
-    color:#fff;
+.footer-col a{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin:11px 0;
+}
+
+.footer-col a:hover{
+  color:var(--black);
 }
 
 .footer-bottom{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    margin-top:60px;
-
-    padding-top:25px;
-
-    border-top:1px solid var(--border);
-
-    color:#62656c;
-
-    font-size:10px;
+  max-width:1440px;
+  margin:auto;
+  border-top:1px solid var(--line);
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
-/* =====================================
+/* =========================
    CART
-===================================== */
+========================= */
 
 .cart-overlay{
-    position:fixed;
-
-    inset:0;
-
-    z-index:1900;
-
-    background:rgba(0,0,0,.65);
-
-    backdrop-filter:blur(5px);
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:.3s;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+  z-index:90;
 }
 
 .cart-overlay.open{
-    opacity:1;
-
-    pointer-events:auto;
+  opacity:1;
+  visibility:visible;
 }
 
 .cart{
-    position:fixed;
-
-    z-index:2000;
-
-    top:0;
-    right:-460px;
-
-    width:min(440px,100%);
-
-    height:100vh;
-
-    padding:28px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    background:#101216;
-
-    border-left:1px solid var(--border);
-
-    transition:.4s cubic-bezier(.77,0,.18,1);
+  position:absolute;
+  top:0;
+  right:0;
+  width:min(450px,100%);
+  height:100%;
+  background:var(--paper);
+  transform:translateX(100%);
+  transition:.4s ease;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
 }
 
-.cart.open{
-    right:0;
+.cart-overlay.open .cart{
+  transform:translateX(0);
 }
 
-.cart-header{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding-bottom:20px;
-
-    border-bottom:1px solid var(--border);
+.cart-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:25px;
+  border-bottom:1px solid var(--line);
 }
 
-.cart-header h3{
-    font-family:"Space Grotesk";
+.cart-head h3{
+  font-family:var(--serif);
+  font-size:30px;
+  font-weight:500;
+}
 
-    font-size:25px;
+.close{
+  border:0;
+  background:transparent;
+  font-size:25px;
 }
 
 .cart-items{
-    flex:1;
-
-    overflow-y:auto;
-
-    padding:20px 0;
-}
-
-.empty-cart{
-    height:100%;
-
-    display:grid;
-
-    place-items:center;
-
-    text-align:center;
-
-    color:var(--muted);
-}
-
-.empty-icon{
-    font-size:42px;
-
-    margin-bottom:12px;
+  flex:1;
+  overflow:auto;
+  padding:20px 0;
 }
 
 .cart-item{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
-    padding:15px 0;
-
-    border-bottom:1px solid var(--border);
+  display:grid;
+  grid-template-columns:80px 1fr auto;
+  gap:15px;
+  align-items:center;
+  margin-bottom:20px;
 }
 
-.cart-item-name{
-    font-size:13px;
-
-    font-weight:600;
+.cart-item img{
+  height:90px;
+  object-fit:cover;
 }
 
-.cart-item-price{
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-top:4px;
+.cart-item h4{
+  font-family:var(--serif);
+  font-size:17px;
+  font-weight:500;
 }
 
-.remove-item{
-    border:0;
-
-    background:none;
-
-    color:#777;
-
-    font-size:18px;
+.cart-item small{
+  display:block;
+  color:var(--muted);
+  margin-top:5px;
 }
 
-.remove-item:hover{
-    color:#fff;
-}
-
-.cart-footer{
-    border-top:1px solid var(--border);
-
-    padding-top:20px;
+.remove{
+  border:0;
+  background:transparent;
+  color:var(--accent);
+  font-size:10px;
 }
 
 .cart-total{
-    display:flex;
+  border-top:1px solid var(--line);
+  padding-top:22px;
+}
 
-    justify-content:space-between;
-
-    margin-bottom:15px;
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
 }
 
 .checkout{
-    width:100%;
-
-    padding:15px;
-
-    border:0;
-
-    border-radius:14px;
-
-    background:var(--accent);
-
-    color:#000;
-
-    font-weight:800;
+  width:100%;
 }
 
-/* =====================================
+/* =========================
    SEARCH
-===================================== */
+========================= */
 
 .search-overlay{
-    position:fixed;
-
-    inset:0;
-
-    z-index:3000;
-
-    display:flex;
-
-    align-items:flex-start;
-    justify-content:center;
-
-    padding-top:17vh;
-
-    background:rgba(5,6,8,.96);
-
-    backdrop-filter:blur(25px);
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:.3s;
+  position:fixed;
+  inset:0;
+  background:var(--paper);
+  z-index:100;
+  padding:40px;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
 }
 
 .search-overlay.open{
-    opacity:1;
+  opacity:1;
+  visibility:visible;
+}
 
-    pointer-events:auto;
+.search-top{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:flex-end;
 }
 
 .search-box{
-    width:min(750px,calc(100% - 40px));
+  max-width:900px;
+  margin:100px auto;
 }
 
-.search-box input{
-    width:100%;
-
-    border:0;
-
-    border-bottom:1px solid var(--border);
-
-    outline:0;
-
-    background:transparent;
-
-    color:#fff;
-
-    font-family:"Space Grotesk";
-
-    font-size:clamp(38px,6vw,72px);
-
-    letter-spacing:-.05em;
-
-    padding:15px 0;
+.search-box small{
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:10px;
+  color:var(--muted);
 }
 
-.search-close{
-    position:fixed;
-
-    top:28px;
-    right:28px;
+.search-input{
+  width:100%;
+  border:0;
+  border-bottom:1px solid var(--black);
+  background:transparent;
+  font-family:var(--serif);
+  font-size:65px;
+  padding:20px 0;
+  outline:none;
 }
 
-/* =====================================
+.search-results{
+  margin-top:25px;
+  color:var(--muted);
+}
+
+/* =========================
    TOAST
-===================================== */
+========================= */
 
 .toast{
-    position:fixed;
-
-    left:50%;
-    bottom:25px;
-
-    z-index:5000;
-
-    transform:translate(-50%,30px);
-
-    padding:13px 18px;
-
-    border:1px solid var(--border);
-
-    border-radius:100px;
-
-    background:#16181d;
-
-    color:#fff;
-
-    font-size:12px;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:.3s;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.4);
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,30px);
+  background:var(--black);
+  color:#fff;
+  padding:13px 20px;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:200;
 }
 
 .toast.show{
-    opacity:1;
-
-    transform:translate(-50%,0);
+  opacity:1;
+  transform:translate(-50%,0);
 }
 
-/* =====================================
+/* =========================
    MOBILE
-===================================== */
+========================= */
 
-@media(max-width:1050px){
+@media(max-width:1000px){
 
-    .nav-links{
-        display:none;
-    }
+  .nav{
+    grid-template-columns:1fr auto;
+    padding:0 20px;
+  }
 
-    .hero-grid{
-        grid-template-columns:1fr;
-    }
+  .nav-center{
+    display:none;
+  }
 
-    .hero-left,
-    .hero-right{
-        min-height:560px;
-    }
+  .hero{
+    padding:20px 20px 60px;
+  }
 
-    .collection-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
 
-    .products{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .hero-copy{
+    padding:60px 10px;
+  }
 
-    .story-grid{
-        grid-template-columns:1fr;
-    }
+  .hero-image{
+    min-height:520px;
+  }
 
-    .story-image,
-    .story-content{
-        min-height:500px;
-    }
+  .intro{
+    padding:25px 20px;
+  }
 
-    .deal{
-        flex-direction:column;
+  .intro-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 
-        align-items:flex-start;
-    }
+  .section,
+  .story{
+    padding:80px 20px;
+  }
 
-    .footer-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .collections{
+    grid-template-columns:1fr;
+  }
+
+  .collection,
+  .collection:nth-child(2),
+  .collection:nth-child(3){
+    margin:0;
+    height:500px;
+  }
+
+  .shop-inner{
+    padding:80px 20px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .product-image{
+    height:360px;
+  }
+
+  .story-grid{
+    grid-template-columns:1fr;
+  }
+
+  .story-image{
+    min-height:500px;
+  }
+
+  .story-copy{
+    padding:65px 30px;
+  }
+
+  .reviews{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
-@media(max-width:650px){
+@media(max-width:600px){
 
-    .container{
-        width:calc(100% - 28px);
-    }
+  .topbar{
+    font-size:9px;
+  }
 
-    .nav{
-        width:calc(100% - 18px);
-    }
+  .nav{
+    height:70px;
+  }
 
-    .hero{
-        padding-top:100px;
-    }
+  .logo{
+    font-size:20px;
+  }
 
-    .hero-left{
-        min-height:530px;
+  .hero h1{
+    font-size:65px;
+    letter-spacing:-2px;
+  }
 
-        padding:35px 25px;
-    }
+  .hero-image{
+    min-height:420px;
+  }
 
-    .hero-title{
-        font-size:61px;
-    }
+  .hero-label{
+    right:12px;
+    bottom:12px;
+  }
 
-    .hero-right{
-        min-height:430px;
-    }
+  .section-title{
+    font-size:45px;
+  }
 
-    .hero-product{
-        width:260px;
-        height:260px;
-    }
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:20px;
+  }
 
-    .hero-orbit{
-        width:350px;
-        height:350px;
-    }
+  .products{
+    grid-template-columns:1fr;
+  }
 
-    .section{
-        padding:80px 0;
-    }
+  .product-image{
+    height:430px;
+  }
 
-    .section-heading{
-        display:block;
-    }
+  .add{
+    opacity:1;
+    transform:none;
+  }
 
-    .section-description{
-        margin-top:20px;
-    }
+  .story-copy h2{
+    font-size:48px;
+  }
 
-    .collection-grid{
-        grid-template-columns:1fr;
-    }
+  .deal h2{
+    font-size:48px;
+  }
 
-    .collection,
-    .collection:nth-child(2),
-    .collection:nth-child(3){
-        min-height:400px;
-    }
+  .timer{
+    gap:5px;
+  }
 
-    .products{
-        grid-template-columns:1fr;
-    }
+  .time{
+    width:70px;
+  }
 
-    .product-image{
-        aspect-ratio:1 / 1;
-    }
+  .newsletter h2{
+    font-size:43px;
+  }
 
-    .story-content{
-        padding:35px 25px;
-    }
+  .search-input{
+    font-size:40px;
+  }
 
-    .features{
-        gap:15px;
-    }
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
 
-    .deal{
-        padding:35px 25px;
-    }
-
-    .timer{
-        width:100%;
-    }
-
-    .timer-box{
-        flex:1;
-        width:auto;
-    }
-
-    .reviews{
-        grid-template-columns:1fr;
-    }
-
-    .email-form{
-        flex-direction:column;
-
-        border-radius:18px;
-
-        gap:7px;
-
-        padding:7px;
-    }
-
-    .email-form input{
-        padding:13px;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .footer-brand{
-        grid-column:1 / -1;
-    }
-
-    .footer-bottom{
-        flex-direction:column;
-    }
+  .footer-bottom{
+    flex-direction:column;
+    gap:10px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================================
-     NAVIGATION
-========================================= -->
+<!-- TOP BAR -->
+<div class="topbar">
+  Complimentary shipping on orders over $150
+</div>
 
-<div class="nav-wrapper">
-
-<nav class="nav">
+<!-- HEADER -->
+<header>
+  <nav class="nav">
 
     <a href="#" class="logo">
+      NEXUS<span>.</span>
+    </a>
 
-        <span class="logo-icon">
-            N
-        </span>
+    <div class="nav-center">
+      <a href="#collections">Collections</a>
+      <a href="#shop">Shop</a>
+      <a href="#story">Our Story</a>
+      <a href="#reviews">Journal</a>
+    </div>
 
-        NEXUS
+    <div class="nav-right">
+
+      <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+        ⌕
+      </button>
+
+      <button class="icon-btn" onclick="openCart()" aria-label="Cart">
+        ♧
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+
+    </div>
+
+  </nav>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-grid">
+
+    <div class="hero-copy">
+
+      <div class="eyebrow">
+        Issue No. 08 — The New Domestic
+      </div>
+
+      <h1>
+        Live<br>
+        <em>beautifully.</em>
+      </h1>
+
+      <p class="hero-text">
+        Thoughtful objects for the spaces where life happens.
+        Designed slowly. Chosen carefully. Made to stay.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#shop" class="btn">Shop collection</a>
+        <a href="#story" class="btn btn-light">Our philosophy</a>
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=85"
+        alt="Curated interior">
+
+      <div class="hero-label">
+        <small>Featured space</small>
+        <strong>The quiet room</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- INTRO -->
+<section class="intro">
+
+  <div class="intro-inner">
+
+    <div class="intro-text">
+      Objects with a reason to exist.
+    </div>
+
+    <div class="intro-meta">
+      <span>01 / Design</span>
+      <span>02 / Material</span>
+      <span>03 / Longevity</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- COLLECTIONS -->
+<section class="section" id="collections">
+
+  <div class="section-head">
+
+    <h2 class="section-title">
+      Collections <span>for living</span>
+    </h2>
+
+    <a href="#shop" class="section-link">
+      Explore all
+    </a>
+
+  </div>
+
+
+  <div class="collections">
+
+    <a class="collection" href="#shop">
+
+      <img
+        src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
+        alt="Living collection">
+
+      <div class="collection-overlay">
+        <div class="collection-number">01 — Living</div>
+        <div class="collection-title">The Home Edit</div>
+      </div>
 
     </a>
 
 
-    <div class="nav-links">
+    <a class="collection" href="#shop">
 
-        <a href="#collections">
-            Collections
-        </a>
+      <img
+        src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1000&q=85"
+        alt="Objects collection">
 
-        <a href="#shop">
-            Shop
-        </a>
+      <div class="collection-overlay">
+        <div class="collection-number">02 — Objects</div>
+        <div class="collection-title">Small Things</div>
+      </div>
 
-        <a href="#story">
-            Our Story
-        </a>
-
-        <a href="#reviews">
-            Reviews
-        </a>
-
-    </div>
+    </a>
 
 
-    <div class="nav-actions">
+    <a class="collection" href="#shop">
 
-        <button
-            class="icon-button"
-            onclick="openSearch()"
-            aria-label="Search">
+      <img
+        src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85"
+        alt="Carry collection">
 
-            ⌕
+      <div class="collection-overlay">
+        <div class="collection-number">03 — Carry</div>
+        <div class="collection-title">Go Lightly</div>
+      </div>
 
-        </button>
+    </a>
 
-
-        <button
-            class="icon-button cart-button"
-            onclick="openCart()"
-            aria-label="Cart">
-
-            🛒
-
-            <span
-                class="cart-count"
-                id="cartCount">
-
-                0
-
-            </span>
-
-        </button>
-
-    </div>
-
-</nav>
-
-</div>
-
-
-<!-- =========================================
-     HERO
-========================================= -->
-
-<section class="hero">
-
-<div class="container hero-grid">
-
-    <div class="hero-left">
-
-        <div class="eyebrow">
-            New collection · 2026
-        </div>
-
-
-        <h1 class="hero-title">
-
-            Objects<br>
-
-            for <span>tomorrow.</span>
-
-        </h1>
-
-
-        <p class="hero-description">
-
-            Curated objects, refined essentials and considered
-            pieces designed for a more intentional way of living.
-
-        </p>
-
-
-        <div class="hero-buttons">
-
-            <a
-                href="#shop"
-                class="primary-button">
-
-                Explore collection →
-
-            </a>
-
-
-            <a
-                href="#story"
-                class="secondary-button">
-
-                Discover Nexus
-
-            </a>
-
-        </div>
-
-
-        <div class="hero-circle"></div>
-
-    </div>
-
-
-    <div class="hero-right">
-
-        <div class="hero-orbit"></div>
-
-        <div class="hero-product"></div>
-
-
-        <div class="hero-product-label">
-
-            <small>
-                Featured object
-            </small>
-
-            <strong>
-                Form 01 — $148
-            </strong>
-
-        </div>
-
-    </div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- =========================================
-     MARQUEE
-========================================= -->
+<!-- SHOP -->
+<section class="shop" id="shop">
 
-<div class="marquee">
+  <div class="shop-inner">
 
-<div class="marquee-track">
+    <div class="section-head">
 
-    <span>
-        Designed with intention
-    </span>
+      <h2 class="section-title">
+        The <span>edit</span>
+      </h2>
 
-    <span class="dot">✦</span>
-
-    <span>
-        Objects for modern living
-    </span>
-
-    <span class="dot">✦</span>
-
-    <span>
-        Less noise. More meaning.
-    </span>
-
-    <span class="dot">✦</span>
-
-
-    <span>
-        Designed with intention
-    </span>
-
-    <span class="dot">✦</span>
-
-    <span>
-        Objects for modern living
-    </span>
-
-    <span class="dot">✦</span>
-
-    <span>
-        Less noise. More meaning.
-    </span>
-
-    <span class="dot">✦</span>
-
-</div>
-
-</div>
-
-
-<!-- =========================================
-     COLLECTIONS
-========================================= -->
-
-<section
-    class="section"
-    id="collections">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-number">
-                01 — Collections
-            </div>
-
-            <h2 class="section-title">
-                Find your<br>
-                frequency.
-            </h2>
-
-        </div>
-
-
-        <p class="section-description">
-
-            Three carefully considered collections built around
-            function, material and the quiet details that make
-            everyday objects feel extraordinary.
-
-        </p>
+      <div class="section-link">
+        08 selected objects
+      </div>
 
     </div>
 
-
-    <div class="collection-grid">
-
-
-        <a
-            href="#shop"
-            class="collection">
-
-            <div class="collection-visual"></div>
-
-            <div class="collection-info">
-
-                <h3>
-                    Objects
-                </h3>
-
-                <p>
-                    Everyday pieces, elevated.
-                </p>
-
-            </div>
-
-        </a>
-
-
-        <a
-            href="#shop"
-            class="collection">
-
-            <div class="collection-visual"></div>
-
-            <div class="collection-info">
-
-                <h3>
-                    Living
-                </h3>
-
-                <p>
-                    Spaces made intentional.
-                </p>
-
-            </div>
-
-        </a>
-
-
-        <a
-            href="#shop"
-            class="collection">
-
-            <div class="collection-visual"></div>
-
-            <div class="collection-info">
-
-                <h3>
-                    Carry
-                </h3>
-
-                <p>
-                    Move through the world better.
-                </p>
-
-            </div>
-
-        </a>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     SHOP
-========================================= -->
-
-<section
-    class="section"
-    id="shop">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-number">
-                02 — Shop
-            </div>
-
-            <h2 class="section-title">
-                The edit.
-            </h2>
-
-        </div>
-
-
-        <p class="section-description">
-
-            A focused selection of pieces chosen for their
-            materiality, longevity and usefulness.
-
-        </p>
-
-    </div>
-
-
-    <!-- TOOLBAR -->
 
     <div class="shop-toolbar">
 
-        <div class="filters">
+      <div class="filters">
 
-            <button
-                class="filter active"
-                onclick="filterProducts('all',this)">
-
-                All
-
-            </button>
-
-
-            <button
-                class="filter"
-                onclick="filterProducts('objects',this)">
-
-                Objects
-
-            </button>
-
-
-            <button
-                class="filter"
-                onclick="filterProducts('living',this)">
-
-                Living
-
-            </button>
-
-
-            <button
-                class="filter"
-                onclick="filterProducts('carry',this)">
-
-                Carry
-
-            </button>
-
-        </div>
-
-
-        <select
-            class="sort"
-            id="sortProducts"
-            onchange="sortProducts()">
-
-            <option value="featured">
-                Featured
-            </option>
-
-            <option value="low">
-                Price: Low to high
-            </option>
-
-            <option value="high">
-                Price: High to low
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <!-- PRODUCTS -->
-
-    <div
-        class="products"
-        id="products">
-
-
-        <!-- PRODUCT 1 -->
-
-        <article
-            class="product"
-            data-category="objects"
-            data-price="148">
-
-            <div class="product-image">
-
-                <span class="product-tag">
-                    New
-                </span>
-
-
-                <button
-                    class="product-wishlist"
-                    onclick="toggleWishlist(this)">
-
-                    ♡
-
-                </button>
-
-
-                <img
-                    src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85"
-                    alt="Form 01">
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-top">
-
-                    <span class="product-name">
-                        Form 01
-                    </span>
-
-                    <span class="product-price">
-                        $148
-                    </span>
-
-                </div>
-
-
-                <div class="product-category">
-                    Sculptural object
-                </div>
-
-
-                <button
-                    class="add-product"
-                    onclick="addToCart('Form 01',148)">
-
-                    Add to cart
-
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 2 -->
-
-        <article
-            class="product"
-            data-category="living"
-            data-price="220">
-
-            <div class="product-image">
-
-                <span class="product-tag">
-                    Best seller
-                </span>
-
-
-                <button
-                    class="product-wishlist"
-                    onclick="toggleWishlist(this)">
-
-                    ♡
-
-                </button>
-
-
-                <img
-                    src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=85"
-                    alt="Halo Light">
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-top">
-
-                    <span class="product-name">
-                        Halo Light
-                    </span>
-
-                    <span class="product-price">
-                        $220
-                    </span>
-
-                </div>
-
-
-                <div class="product-category">
-                    Ambient lighting
-                </div>
-
-
-                <button
-                    class="add-product"
-                    onclick="addToCart('Halo Light',220)">
-
-                    Add to cart
-
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 3 -->
-
-        <article
-            class="product"
-            data-category="carry"
-            data-price="185">
-
-            <div class="product-image">
-
-                <button
-                    class="product-wishlist"
-                    onclick="toggleWishlist(this)">
-
-                    ♡
-
-                </button>
-
-
-                <img
-                    src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85"
-                    alt="Mono Pack">
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-top">
-
-                    <span class="product-name">
-                        Mono Pack
-                    </span>
-
-                    <span class="product-price">
-                        $185
-                    </span>
-
-                </div>
-
-
-                <div class="product-category">
-                    Daily carry
-                </div>
-
-
-                <button
-                    class="add-product"
-                    onclick="addToCart('Mono Pack',185)">
-
-                    Add to cart
-
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 4 -->
-
-        <article
-            class="product"
-            data-category="objects"
-            data-price="96">
-
-            <div class="product-image">
-
-                <button
-                    class="product-wishlist"
-                    onclick="toggleWishlist(this)">
-
-                    ♡
-
-                </button>
-
-
-                <img
-                    src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85"
-                    alt="Arc Tray">
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-top">
-
-                    <span class="product-name">
-                        Arc Tray
-                    </span>
-
-                    <span class="product-price">
-                        $96
-                    </span>
-
-                </div>
-
-
-                <div class="product-category">
-                    Desk object
-                </div>
-
-
-                <button
-                    class="add-product"
-                    onclick="addToCart('Arc Tray',96)">
-
-                    Add to cart
-
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 5 -->
-
-        <article
-            class="product"
-            data-category="living"
-            data-price="124">
-
-            <div class="product-image">
-
-                <button
-                    class="product-wishlist"
-                    onclick="toggleWishlist(this)">
-
-                    ♡
-
-                </button>
-
-
-                <img
-                    src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=900&q=85"
-                    alt="Vessel 02">
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-top">
-
-                    <span class="product-name">
-                        Vessel 02
-                    </span>
-
-                    <span class="product-price">
-                        $124
-                    </span>
-
-                </div>
-
-
-                <div class="product-category">
-                    Ceramic vessel
-                </div>
-
-
-                <button
-                    class="add-product"
-                    onclick="addToCart('Vessel 02',124)">
-
-                    Add to cart
-
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 6 -->
-
-        <article
-            class="product"
-            data-category="carry"
-            data-price="72">
-
-            <div class="product-image">
-
-                <button
-                    class="product-wishlist"
-                    onclick="toggleWishlist(this)">
-
-                    ♡
-
-                </button>
-
-
-                <img
-                    src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=85"
-                    alt="Field Bottle">
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-top">
-
-                    <span class="product-name">
-                        Field Bottle
-                    </span>
-
-                    <span class="product-price">
-                        $72
-                    </span>
-
-                </div>
-
-
-                <div class="product-category">
-                    Insulated bottle
-                </div>
-
-
-                <button
-                    class="add-product"
-                    onclick="addToCart('Field Bottle',72)">
-
-                    Add to cart
-
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 7 -->
-
-        <article
-            class="product"
-            data-category="objects"
-            data-price="164">
-
-            <div class="product-image">
-
-                <button
-                    class="product-wishlist"
-                    onclick="toggleWishlist(this)">
-
-                    ♡
-
-                </button>
-
-
-                <img
-                    src="https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=900&q=85"
-                    alt="Stone Clock">
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-top">
-
-                    <span class="product-name">
-                        Stone Clock
-                    </span>
-
-                    <span class="product-price">
-                        $164
-                    </span>
-
-                </div>
-
-
-                <div class="product-category">
-                    Desk clock
-                </div>
-
-
-                <button
-                    class="add-product"
-                    onclick="addToCart('Stone Clock',164)">
-
-                    Add to cart
-
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <!-- PRODUCT 8 -->
-
-        <article
-            class="product"
-            data-category="living"
-            data-price="390">
-
-            <div class="product-image">
-
-                <button
-                    class="product-wishlist"
-                    onclick="toggleWishlist(this)">
-
-                    ♡
-
-                </button>
-
-
-                <img
-                    src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=85"
-                    alt="Soft Chair">
-
-            </div>
-
-
-            <div class="product-info">
-
-                <div class="product-top">
-
-                    <span class="product-name">
-                        Soft Chair
-                    </span>
-
-                    <span class="product-price">
-                        $390
-                    </span>
-
-                </div>
-
-
-                <div class="product-category">
-                    Lounge furniture
-                </div>
-
-
-                <button
-                    class="add-product"
-                    onclick="addToCart('Soft Chair',390)">
-
-                    Add to cart
-
-                </button>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     STORY
-========================================= -->
-
-<section
-    class="section"
-    id="story">
-
-<div class="container">
-
-    <div class="story-grid">
-
-
-        <div class="story-image">
-
-            <div class="story-object"></div>
-
-        </div>
-
-
-        <div class="story-content">
-
-            <div class="section-number">
-                03 — Our philosophy
-            </div>
-
-
-            <h2>
-
-                Make space<br>
-
-                for <span>better.</span>
-
-            </h2>
-
-
-            <p>
-
-                Nexus exists somewhere between design and utility.
-                We believe the objects around us should earn their
-                place — not through excess, but through thoughtful
-                form, honest materials and lasting usefulness.
-
-            </p>
-
-
-            <div class="features">
-
-                <div class="feature">
-
-                    <strong>
-                        01 — Considered
-                    </strong>
-
-                    <span>
-                        Every detail has a reason.
-                    </span>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <strong>
-                        02 — Durable
-                    </strong>
-
-                    <span>
-                        Made for years, not seasons.
-                    </span>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <strong>
-                        03 — Responsible
-                    </strong>
-
-                    <span>
-                        Materials chosen consciously.
-                    </span>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <strong>
-                        04 — Useful
-                    </strong>
-
-                    <span>
-                        Beauty never replaces function.
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     DEAL
-========================================= -->
-
-<section class="section">
-
-<div class="container">
-
-    <div class="deal">
-
-        <div>
-
-            <div class="section-number">
-                Limited drop
-            </div>
-
-
-            <h2 class="deal-title">
-
-                20% off<br>
-
-                <span>everything.</span>
-
-            </h2>
-
-
-            <p class="deal-description">
-
-                A limited-time opportunity to bring something
-                considered into your space.
-
-            </p>
-
-        </div>
-
-
-        <div class="timer">
-
-            <div class="timer-box">
-
-                <div>
-
-                    <strong id="days">
-                        04
-                    </strong>
-
-                    <span>
-                        Days
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="timer-box">
-
-                <div>
-
-                    <strong id="hours">
-                        12
-                    </strong>
-
-                    <span>
-                        Hours
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="timer-box">
-
-                <div>
-
-                    <strong id="minutes">
-                        36
-                    </strong>
-
-                    <span>
-                        Minutes
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="timer-box">
-
-                <div>
-
-                    <strong id="seconds">
-                        42
-                    </strong>
-
-                    <span>
-                        Seconds
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     REVIEWS
-========================================= -->
-
-<section
-    class="section"
-    id="reviews">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-number">
-                04 — People
-            </div>
-
-            <h2 class="section-title">
-                Loved by<br>
-                the curious.
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div class="reviews">
-
-
-        <article class="review">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p class="review-text">
-
-                “Nexus somehow makes ordinary objects feel
-                completely new. The attention to detail is
-                ridiculous.”
-
-            </p>
-
-
-            <div class="reviewer">
-
-                <div class="avatar"></div>
-
-                <div>
-
-                    <strong>
-                        Maya R.
-                    </strong>
-
-                    <span>
-                        New York
-                    </span>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="review">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p class="review-text">
-
-                “The design language is beautiful without feeling
-                precious. Everything I've bought actually gets used.”
-
-            </p>
-
-
-            <div class="reviewer">
-
-                <div class="avatar"></div>
-
-                <div>
-
-                    <strong>
-                        Daniel K.
-                    </strong>
-
-                    <span>
-                        London
-                    </span>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="review">
-
-            <div class="stars">
-                ★★★★★
-            </div>
-
-            <p class="review-text">
-
-                “Exactly the kind of store I've been looking for.
-                Minimal, unusual and very well made.”
-
-            </p>
-
-
-            <div class="reviewer">
-
-                <div class="avatar"></div>
-
-                <div>
-
-                    <strong>
-                        Sofia L.
-                    </strong>
-
-                    <span>
-                        Copenhagen
-                    </span>
-
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================================
-     NEWSLETTER
-========================================= -->
-
-<section class="newsletter">
-
-<div class="container">
-
-    <div class="section-number">
-        Stay connected
-    </div>
-
-
-    <h2>
-        Keep the signal.
-    </h2>
-
-
-    <p>
-
-        New objects, design stories and occasional things
-        worth knowing. No noise.
-
-    </p>
-
-
-    <form
-        class="email-form"
-        onsubmit="subscribe(event)">
-
-        <input
-            type="email"
-            placeholder="Your email address"
-            required>
-
-        <button>
-            Join Nexus
+        <button class="filter active" data-filter="all">
+          All
         </button>
 
-    </form>
+        <button class="filter" data-filter="objects">
+          Objects
+        </button>
 
-</div>
+        <button class="filter" data-filter="living">
+          Living
+        </button>
+
+        <button class="filter" data-filter="carry">
+          Carry
+        </button>
+
+      </div>
+
+
+      <select class="sort" id="sort">
+
+        <option value="featured">
+          Featured
+        </option>
+
+        <option value="low">
+          Price: Low
+        </option>
+
+        <option value="high">
+          Price: High
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="products" id="products">
+
+      <!-- PRODUCT 1 -->
+      <article
+        class="product"
+        data-category="objects"
+        data-price="148"
+        data-name="Form 01">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85"
+            alt="Form 01">
+
+          <span class="product-tag">
+            New
+          </span>
+
+          <button class="wishlist">
+            ♡
+          </button>
+
+          <button
+            class="add"
+            onclick="addToCart('Form 01',148,'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=500&q=80')">
+            Add to bag
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Objects
+          </div>
+
+          <div class="product-name">
+            Form 01
+          </div>
+
+          <div class="product-bottom">
+            <div class="price">$148</div>
+            <div class="product-note">Hand finished</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 2 -->
+      <article
+        class="product"
+        data-category="living"
+        data-price="220"
+        data-name="Halo Light">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=900&q=85"
+            alt="Halo Light">
+
+          <span class="product-tag">
+            Best seller
+          </span>
+
+          <button class="wishlist">
+            ♡
+          </button>
+
+          <button
+            class="add"
+            onclick="addToCart('Halo Light',220,'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=500&q=80')">
+            Add to bag
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Living
+          </div>
+
+          <div class="product-name">
+            Halo Light
+          </div>
+
+          <div class="product-bottom">
+            <div class="price">$220</div>
+            <div class="product-note">Soft illumination</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 3 -->
+      <article
+        class="product"
+        data-category="carry"
+        data-price="185"
+        data-name="Mono Pack">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=85"
+            alt="Mono Pack">
+
+          <button class="wishlist">
+            ♡
+          </button>
+
+          <button
+            class="add"
+            onclick="addToCart('Mono Pack',185,'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=80')">
+            Add to bag
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Carry
+          </div>
+
+          <div class="product-name">
+            Mono Pack
+          </div>
+
+          <div class="product-bottom">
+            <div class="price">$185</div>
+            <div class="product-note">Everyday carry</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 4 -->
+      <article
+        class="product"
+        data-category="objects"
+        data-price="96"
+        data-name="Arc Tray">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=900&q=85"
+            alt="Arc Tray">
+
+          <span class="product-tag">
+            New
+          </span>
+
+          <button class="wishlist">
+            ♡
+          </button>
+
+          <button
+            class="add"
+            onclick="addToCart('Arc Tray',96,'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=500&q=80')">
+            Add to bag
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Objects
+          </div>
+
+          <div class="product-name">
+            Arc Tray
+          </div>
+
+          <div class="product-bottom">
+            <div class="price">$96</div>
+            <div class="product-note">Solid material</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 5 -->
+      <article
+        class="product"
+        data-category="living"
+        data-price="124"
+        data-name="Vessel 02">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=900&q=85"
+            alt="Vessel 02">
+
+          <button class="wishlist">
+            ♡
+          </button>
+
+          <button
+            class="add"
+            onclick="addToCart('Vessel 02',124,'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=500&q=80')">
+            Add to bag
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Living
+          </div>
+
+          <div class="product-name">
+            Vessel 02
+          </div>
+
+          <div class="product-bottom">
+            <div class="price">$124</div>
+            <div class="product-note">Ceramic studio</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 6 -->
+      <article
+        class="product"
+        data-category="carry"
+        data-price="72"
+        data-name="Field Bottle">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=85"
+            alt="Field Bottle">
+
+          <button class="wishlist">
+            ♡
+          </button>
+
+          <button
+            class="add"
+            onclick="addToCart('Field Bottle',72,'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=500&q=80')">
+            Add to bag
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Carry
+          </div>
+
+          <div class="product-name">
+            Field Bottle
+          </div>
+
+          <div class="product-bottom">
+            <div class="price">$72</div>
+            <div class="product-note">Made for movement</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 7 -->
+      <article
+        class="product"
+        data-category="objects"
+        data-price="164"
+        data-name="Stone Clock">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=900&q=85"
+            alt="Stone Clock">
+
+          <span class="product-tag">
+            Limited
+          </span>
+
+          <button class="wishlist">
+            ♡
+          </button>
+
+          <button
+            class="add"
+            onclick="addToCart('Stone Clock',164,'https://images.unsplash.com/photo-1501139083538-0139583c060f?auto=format&fit=crop&w=500&q=80')">
+            Add to bag
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Objects
+          </div>
+
+          <div class="product-name">
+            Stone Clock
+          </div>
+
+          <div class="product-bottom">
+            <div class="price">$164</div>
+            <div class="product-note">Quiet mechanism</div>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PRODUCT 8 -->
+      <article
+        class="product"
+        data-category="living"
+        data-price="390"
+        data-name="Soft Chair">
+
+        <div class="product-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=85"
+            alt="Soft Chair">
+
+          <span class="product-tag">
+            Signature
+          </span>
+
+          <button class="wishlist">
+            ♡
+          </button>
+
+          <button
+            class="add"
+            onclick="addToCart('Soft Chair',390,'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&q=80')">
+            Add to bag
+          </button>
+
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-category">
+            Living
+          </div>
+
+          <div class="product-name">
+            Soft Chair
+          </div>
+
+          <div class="product-bottom">
+            <div class="price">$390</div>
+            <div class="product-note">Deep comfort</div>
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- =========================================
-     FOOTER
-========================================= -->
+<!-- STORY -->
+<section class="story" id="story">
 
+  <div class="story-grid">
+
+    <div class="story-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1300&q=85"
+        alt="Nexus interior">
+
+    </div>
+
+    <div class="story-copy">
+
+      <div class="eyebrow">
+        Our philosophy
+      </div>
+
+      <h2>
+        Less,<br>
+        but better.
+      </h2>
+
+      <p>
+        Nexus began with a simple question:
+        what if everything we brought into our homes
+        had a reason to be there?
+      </p>
+
+      <p>
+        We work with designers, craftspeople and
+        independent studios to find objects that
+        balance function, material and feeling.
+      </p>
+
+      <a href="#reviews" class="btn">
+        Read our story
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STATEMENT -->
+<section class="statement">
+
+  <p>
+    “A home should not be filled with things.
+    It should be filled with <em>meaning.</em>”
+  </p>
+
+</section>
+
+
+<!-- DEAL -->
+<section class="deal">
+
+  <div class="deal-inner">
+
+    <div class="eyebrow">
+      This week's edit
+    </div>
+
+    <h2>
+      20% off selected pieces.
+    </h2>
+
+    <p>
+      A small selection of our favorite objects,
+      available at a special price for a limited time.
+    </p>
+
+    <div class="timer">
+
+      <div class="time">
+        <strong id="days">02</strong>
+        <span>Days</span>
+      </div>
+
+      <div class="time">
+        <strong id="hours">08</strong>
+        <span>Hours</span>
+      </div>
+
+      <div class="time">
+        <strong id="minutes">41</strong>
+        <span>Minutes</span>
+      </div>
+
+      <div class="time">
+        <strong id="seconds">20</strong>
+        <span>Seconds</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+
+  <div class="section-head">
+
+    <h2 class="section-title">
+      Words <span>from home</span>
+    </h2>
+
+  </div>
+
+  <div class="reviews">
+
+    <div class="review">
+
+      <div class="stars">
+        ★★★★★
+      </div>
+
+      <p>
+        “The kind of store where you want
+        to buy everything.”
+      </p>
+
+      <small>
+        — Maya R.
+      </small>
+
+    </div>
+
+
+    <div class="review">
+
+      <div class="stars">
+        ★★★★★
+      </div>
+
+      <p>
+        “Beautiful objects, beautifully
+        presented. Nexus gets it.”
+      </p>
+
+      <small>
+        — Daniel K.
+      </small>
+
+    </div>
+
+
+    <div class="review">
+
+      <div class="stars">
+        ★★★★★
+      </div>
+
+      <p>
+        “Everything feels intentional.
+        Nothing feels unnecessary.”
+      </p>
+
+      <small>
+        — Sofia L.
+      </small>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+
+  <div class="eyebrow">
+    The Nexus Journal
+  </div>
+
+  <h2>
+    Good things, occasionally.
+  </h2>
+
+  <p>
+    New collections, studio stories and
+    considered recommendations — delivered
+    without the noise.
+  </p>
+
+  <form class="newsletter-form" onsubmit="subscribe(event)">
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Your email address"
+      required>
+
+    <button>
+      Subscribe →
+    </button>
+
+  </form>
+
+</section>
+
+
+<!-- FOOTER -->
 <footer>
 
-<div class="container">
+  <div class="footer-grid">
 
-    <div class="footer-grid">
+    <div class="footer-brand">
 
+      <div class="logo">
+        NEXUS<span>.</span>
+      </div>
 
-        <div class="footer-brand">
-
-            <a href="#" class="logo">
-
-                <span class="logo-icon">
-                    N
-                </span>
-
-                NEXUS
-
-            </a>
-
-
-            <p class="footer-description">
-
-                A curated destination for objects,
-                essentials and ideas for modern living.
-
-            </p>
-
-        </div>
-
-
-        <div>
-
-            <div class="footer-title">
-                Explore
-            </div>
-
-            <div class="footer-links">
-
-                <a href="#shop">
-                    Shop
-                </a>
-
-                <a href="#collections">
-                    Collections
-                </a>
-
-                <a href="#story">
-                    Our Story
-                </a>
-
-                <a href="#reviews">
-                    Reviews
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div>
-
-            <div class="footer-title">
-                Help
-            </div>
-
-            <div class="footer-links">
-
-                <a href="#">
-                    Shipping
-                </a>
-
-                <a href="#">
-                    Returns
-                </a>
-
-                <a href="#">
-                    FAQ
-                </a>
-
-                <a href="#">
-                    Contact
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div>
-
-            <div class="footer-title">
-                Social
-            </div>
-
-            <div class="footer-links">
-
-                <a href="#">
-                    Instagram
-                </a>
-
-                <a href="#">
-                    Pinterest
-                </a>
-
-                <a href="#">
-                    TikTok
-                </a>
-
-                <a href="#">
-                    Journal
-                </a>
-
-            </div>
-
-        </div>
+      <p>
+        Curated objects for modern living.
+        Designed to become part of your life,
+        not simply part of your room.
+      </p>
 
     </div>
 
 
-    <div class="footer-bottom">
+    <div class="footer-col">
 
-        <span>
-            © 2026 NEXUS. All rights reserved.
-        </span>
+      <h4>Shop</h4>
 
-        <span>
-            Designed for the future.
-        </span>
+      <a href="#shop">All products</a>
+      <a href="#shop">Objects</a>
+      <a href="#shop">Living</a>
+      <a href="#shop">Carry</a>
 
     </div>
 
-</div>
+
+    <div class="footer-col">
+
+      <h4>About</h4>
+
+      <a href="#story">Our story</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#">Journal</a>
+      <a href="#">Contact</a>
+
+    </div>
+
+
+    <div class="footer-col">
+
+      <h4>Help</h4>
+
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">FAQ</a>
+      <a href="#">Privacy</a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 Nexus Studio
+    </span>
+
+    <span>
+      Made for considered living
+    </span>
+
+  </div>
 
 </footer>
 
 
-<!-- =========================================
-     CART OVERLAY
-========================================= -->
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay">
 
-<div
-    class="cart-overlay"
-    id="cartOverlay"
-    onclick="closeCart()">
+  <aside class="cart">
+
+    <div class="cart-head">
+
+      <h3>Your bag</h3>
+
+      <button class="close" onclick="closeCart()">
+        ×
+      </button>
+
+    </div>
+
+    <div class="cart-items" id="cartItems">
+
+      <p style="color:#777;font-size:13px;">
+        Your bag is empty.
+      </p>
+
+    </div>
+
+    <div class="cart-total">
+
+      <div class="total-row">
+
+        <span>Subtotal</span>
+
+        <strong id="cartTotal">
+          $0
+        </strong>
+
+      </div>
+
+      <button
+        class="btn checkout"
+        onclick="checkout()">
+        Checkout
+      </button>
+
+    </div>
+
+  </aside>
+
 </div>
 
 
-<!-- =========================================
-     CART
-========================================= -->
+<!-- SEARCH -->
+<div class="search-overlay" id="searchOverlay">
 
-<aside
-    class="cart"
-    id="cart">
+  <div class="search-top">
 
-    <div class="cart-header">
-
-        <h3>
-            Your cart
-        </h3>
-
-
-        <button
-            class="icon-button"
-            onclick="closeCart()">
-
-            ×
-
-        </button>
-
-    </div>
-
-
-    <div
-        class="cart-items"
-        id="cartItems">
-
-        <div class="empty-cart">
-
-            <div>
-
-                <div class="empty-icon">
-                    ◌
-                </div>
-
-                <p>
-                    Your cart is empty.
-                </p>
-
-                <small>
-                    Add something considered.
-                </small>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="cart-footer">
-
-        <div class="cart-total">
-
-            <span>
-                Total
-            </span>
-
-            <strong id="cartTotal">
-                $0
-            </strong>
-
-        </div>
-
-
-        <button
-            class="checkout"
-            onclick="checkout()">
-
-            Checkout →
-
-        </button>
-
-    </div>
-
-</aside>
-
-
-<!-- =========================================
-     SEARCH
-========================================= -->
-
-<div
-    class="search-overlay"
-    id="searchOverlay">
-
-    <button
-        class="icon-button search-close"
-        onclick="closeSearch()">
-
-        ×
-
+    <button class="close" onclick="closeSearch">
+      ×
     </button>
 
+  </div>
 
-    <div class="search-box">
+  <div class="search-box">
 
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="Search Nexus..."
-            oninput="searchProducts(this.value)">
+    <small>
+      Search Nexus
+    </small>
 
+    <input
+      class="search-input"
+      id="searchInput"
+      type="text"
+      placeholder="What are you looking for?">
+
+    <div
+      class="search-results"
+      id="searchResults">
+      Start typing to search the collection.
     </div>
+
+  </div>
 
 </div>
 
 
-<!-- =========================================
-     TOAST
-========================================= -->
-
-<div
-    class="toast"
-    id="toast">
-
-    Added to cart ✓
-
+<!-- TOAST -->
+<div class="toast" id="toast">
+  Added to your bag
 </div>
 
 
 <script>
 
-/* =========================================
+/* =========================
    CART
-========================================= */
+========================= */
 
 let cart = [];
 
 
-function addToCart(name, price){
+function addToCart(name, price, image){
 
-    cart.push({
-        name:name,
-        price:price
-    });
+  cart.push({
+    name,
+    price,
+    image
+  });
 
-    updateCart();
+  updateCart();
 
-    showToast(name + " added to cart");
+  showToast(name + " added to bag");
 
-    openCart();
+  openCart();
 }
 
 
 function updateCart(){
 
-    const count =
-        document.getElementById("cartCount");
+  const count = document.getElementById("cartCount");
 
-    const items =
-        document.getElementById("cartItems");
-
-    const total =
-        document.getElementById("cartTotal");
+  count.textContent = cart.length;
 
 
-    count.textContent = cart.length;
+  const items = document.getElementById("cartItems");
 
 
-    if(cart.length === 0){
+  if(cart.length === 0){
 
-        items.innerHTML = `
+    items.innerHTML = `
+      <p style="color:#777;font-size:13px;">
+        Your bag is empty.
+      </p>
+    `;
 
-            <div class="empty-cart">
+  }else{
 
-                <div>
+    items.innerHTML = cart.map((item,index)=>`
 
-                    <div class="empty-icon">
-                        ◌
-                    </div>
+      <div class="cart-item">
 
-                    <p>
-                        Your cart is empty.
-                    </p>
+        <img src="${item.image}" alt="${item.name}">
 
-                    <small>
-                        Add something considered.
-                    </small>
+        <div>
+          <h4>${item.name}</h4>
+          <small>$${item.price}</small>
+        </div>
 
-                </div>
+        <button
+          class="remove"
+          onclick="removeItem(${index})">
+          Remove
+        </button>
 
-            </div>
+      </div>
 
-        `;
+    `).join("");
 
-        total.textContent = "$0";
-
-        return;
-    }
-
-
-    let totalPrice = 0;
-
-    items.innerHTML = "";
+  }
 
 
-    cart.forEach((item,index)=>{
+  const total = cart.reduce(
+    (sum,item)=>sum + item.price,
+    0
+  );
 
-        totalPrice += item.price;
-
-
-        const row =
-            document.createElement("div");
-
-        row.className = "cart-item";
-
-
-        row.innerHTML = `
-
-            <div>
-
-                <div class="cart-item-name">
-                    ${item.name}
-                </div>
-
-                <div class="cart-item-price">
-                    $${item.price}
-                </div>
-
-            </div>
-
-
-            <button
-                class="remove-item"
-                onclick="removeFromCart(${index})">
-
-                ×
-
-            </button>
-
-        `;
-
-
-        items.appendChild(row);
-
-    });
-
-
-    total.textContent =
-        "$" + totalPrice;
-}
-
-
-function removeFromCart(index){
-
-    cart.splice(index,1);
-
-    updateCart();
+  document.getElementById("cartTotal").textContent =
+    "$" + total.toFixed(0);
 
 }
 
 
-/* =========================================
-   CART OPEN / CLOSE
-========================================= */
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+
+}
+
 
 function openCart(){
 
-    document
-        .getElementById("cart")
-        .classList.add("open");
-
-
-    document
-        .getElementById("cartOverlay")
-        .classList.add("open");
+  document
+    .getElementById("cartOverlay")
+    .classList.add("open");
 
 }
 
 
 function closeCart(){
 
-    document
-        .getElementById("cart")
-        .classList.remove("open");
-
-
-    document
-        .getElementById("cartOverlay")
-        .classList.remove("open");
+  document
+    .getElementById("cartOverlay")
+    .classList.remove("open");
 
 }
 
 
-/* =========================================
+function checkout(){
+
+  if(cart.length === 0){
+
+    showToast("Your bag is empty");
+
+    return;
+  }
+
+  showToast("Checkout coming soon");
+
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+const filters =
+  document.querySelectorAll(".filter");
+
+const products =
+  document.querySelectorAll(".product");
+
+
+filters.forEach(filter=>{
+
+  filter.addEventListener("click",()=>{
+
+    filters.forEach(x=>
+      x.classList.remove("active")
+    );
+
+    filter.classList.add("active");
+
+    const value =
+      filter.dataset.filter;
+
+
+    products.forEach(product=>{
+
+      if(
+        value === "all" ||
+        product.dataset.category === value
+      ){
+
+        product.style.display = "";
+
+      }else{
+
+        product.style.display = "none";
+
+      }
+
+    });
+
+  });
+
+});
+
+
+/* =========================
+   SORT
+========================= */
+
+document
+  .getElementById("sort")
+  .addEventListener("change", function(){
+
+    const container =
+      document.getElementById("products");
+
+    const items =
+      Array.from(container.children);
+
+
+    if(this.value === "low"){
+
+      items.sort(
+        (a,b)=>
+        Number(a.dataset.price) -
+        Number(b.dataset.price)
+      );
+
+    }
+
+    else if(this.value === "high"){
+
+      items.sort(
+        (a,b)=>
+        Number(b.dataset.price) -
+        Number(a.dataset.price)
+      );
+
+    }
+
+    else{
+
+      items.sort(
+        (a,b)=>
+        Number(a.dataset.original || 0) -
+        Number(b.dataset.original || 0)
+      );
+
+    }
+
+
+    items.forEach(item=>
+      container.appendChild(item)
+    );
+
+});
+
+
+/* =========================
+   WISHLIST
+========================= */
+
+document
+  .querySelectorAll(".wishlist")
+  .forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+      button.classList.toggle("active");
+
+      button.textContent =
+        button.classList.contains("active")
+        ? "♥"
+        : "♡";
+
+    });
+
+});
+
+
+/* =========================
    SEARCH
-========================================= */
+========================= */
 
 function openSearch(){
 
+  document
+    .getElementById("searchOverlay")
+    .classList.add("open");
+
+  setTimeout(()=>{
+
     document
-        .getElementById("searchOverlay")
-        .classList.add("open");
+      .getElementById("searchInput")
+      .focus();
 
-
-    setTimeout(()=>{
-
-        document
-            .getElementById("searchInput")
-            .focus();
-
-    },250);
+  },200);
 
 }
 
 
 function closeSearch(){
 
-    document
-        .getElementById("searchOverlay")
-        .classList.remove("open");
+  document
+    .getElementById("searchOverlay")
+    .classList.remove("open");
 
 }
 
 
-document.addEventListener("keydown",(event)=>{
+document
+  .getElementById("searchInput")
+  .addEventListener("input",function(){
 
-    if(event.key === "Escape"){
+    const query =
+      this.value.toLowerCase().trim();
 
-        closeCart();
+    const result =
+      document.getElementById("searchResults");
 
-        closeSearch();
+
+    if(!query){
+
+      result.textContent =
+        "Start typing to search the collection.";
+
+      return;
+
+    }
+
+
+    const matches =
+      Array.from(products)
+      .filter(product =>
+        product.dataset.name
+          .toLowerCase()
+          .includes(query)
+      );
+
+
+    if(matches.length){
+
+      result.innerHTML =
+        matches.map(
+          x => "• " + x.dataset.name
+        ).join("<br>");
+
+    }else{
+
+      result.textContent =
+        "No objects found.";
 
     }
 
 });
 
 
-/* =========================================
-   FILTER
-========================================= */
-
-function filterProducts(category,button){
-
-    document
-        .querySelectorAll(".filter")
-        .forEach(btn=>{
-            btn.classList.remove("active");
-        });
-
-
-    button.classList.add("active");
-
-
-    document
-        .querySelectorAll(".product")
-        .forEach(product=>{
-
-            const productCategory =
-                product.dataset.category;
-
-
-            if(
-                category === "all" ||
-                productCategory === category
-            ){
-
-                product.style.display = "block";
-
-            }else{
-
-                product.style.display = "none";
-
-            }
-
-        });
-
-}
-
-
-/* =========================================
-   SORT
-========================================= */
-
-function sortProducts(){
-
-    const value =
-        document.getElementById("sortProducts").value;
-
-
-    const container =
-        document.getElementById("products");
-
-
-    const products =
-        Array.from(
-            container.querySelectorAll(".product")
-        );
-
-
-    if(value === "low"){
-
-        products.sort(
-            (a,b)=>
-                Number(a.dataset.price) -
-                Number(b.dataset.price)
-        );
-
-    }
-
-
-    if(value === "high"){
-
-        products.sort(
-            (a,b)=>
-                Number(b.dataset.price) -
-                Number(a.dataset.price)
-        );
-
-    }
-
-
-    if(value === "featured"){
-
-        products.sort(
-            (a,b)=>
-                Number(a.dataset.price) -
-                Number(b.dataset.price)
-        );
-
-        products.reverse();
-
-    }
-
-
-    products.forEach(product=>{
-        container.appendChild(product);
-    });
-
-}
-
-
-/* =========================================
-   SEARCH PRODUCTS
-========================================= */
-
-function searchProducts(query){
-
-    query =
-        query.toLowerCase().trim();
-
-
-    document
-        .querySelectorAll(".product")
-        .forEach(product=>{
-
-            const name =
-                product
-                .querySelector(".product-name")
-                .textContent
-                .toLowerCase();
-
-
-            const category =
-                product
-                .querySelector(".product-category")
-                .textContent
-                .toLowerCase();
-
-
-            if(
-                name.includes(query) ||
-                category.includes(query)
-            ){
-
-                product.style.display = "block";
-
-            }else{
-
-                product.style.display = "none";
-
-            }
-
-        });
-
-}
-
-
-/* =========================================
-   WISHLIST
-========================================= */
-
-function toggleWishlist(button){
-
-    if(button.textContent.trim() === "♡"){
-
-        button.textContent = "♥";
-
-        showToast("Added to wishlist");
-
-    }else{
-
-        button.textContent = "♡";
-
-        showToast("Removed from wishlist");
-
-    }
-
-}
-
-
-/* =========================================
+/* =========================
    TOAST
-========================================= */
+========================= */
 
 let toastTimer;
 
 
 function showToast(message){
 
-    const toast =
-        document.getElementById("toast");
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
 
 
-    toast.textContent = message;
+  clearTimeout(toastTimer);
 
-    toast.classList.add("show");
+  toastTimer = setTimeout(()=>{
 
+    toast.classList.remove("show");
 
-    clearTimeout(toastTimer);
-
-
-    toastTimer =
-        setTimeout(()=>{
-
-            toast.classList.remove("show");
-
-        },2200);
+  },2200);
 
 }
 
 
-/* =========================================
+/* =========================
    NEWSLETTER
-========================================= */
+========================= */
 
 function subscribe(event){
 
-    event.preventDefault();
+  event.preventDefault();
 
+  const email =
+    document.getElementById("email");
 
-    const form = event.target;
+  if(email.value){
 
-    const input =
-        form.querySelector("input");
+    showToast("You're on the list");
 
-    const button =
-        form.querySelector("button");
+    email.value = "";
 
-
-    button.textContent =
-        "You're in ✓";
-
-
-    input.value = "";
-
-
-    showToast(
-        "Welcome to Nexus"
-    );
-
-
-    setTimeout(()=>{
-
-        button.textContent =
-            "Join Nexus";
-
-    },3000);
+  }
 
 }
 
 
-/* =========================================
-   CHECKOUT
-========================================= */
-
-function checkout(){
-
-    if(cart.length === 0){
-
-        showToast(
-            "Your cart is empty"
-        );
-
-        return;
-
-    }
-
-
-    showToast(
-        "Checkout coming soon"
-    );
-
-}
-
-
-/* =========================================
+/* =========================
    COUNTDOWN
-========================================= */
+========================= */
 
-const countdownTarget =
-    Date.now()
-    +
-    (
-        4 *
-        24 *
-        60 *
-        60 *
-        1000
-    )
-    +
-    (
-        12 *
-        60 *
-        60 *
-        1000
+let countdown =
+  new Date().getTime() +
+  (2 * 24 * 60 * 60 * 1000) +
+  (8 * 60 * 60 * 1000);
+
+
+function updateTimer(){
+
+  const now =
+    new Date().getTime();
+
+  const distance =
+    countdown - now;
+
+
+  if(distance <= 0){
+
+    return;
+
+  }
+
+
+  const days =
+    Math.floor(
+      distance /
+      (1000 * 60 * 60 * 24)
+    );
+
+  const hours =
+    Math.floor(
+      (distance %
+      (1000 * 60 * 60 * 24)) /
+      (1000 * 60 * 60)
+    );
+
+  const minutes =
+    Math.floor(
+      (distance %
+      (1000 * 60 * 60)) /
+      (1000 * 60)
+    );
+
+  const seconds =
+    Math.floor(
+      (distance %
+      (1000 * 60)) /
+      1000
     );
 
 
-function updateCountdown(){
+  document.getElementById("days")
+    .textContent =
+    String(days).padStart(2,"0");
 
-    const distance =
-        countdownTarget -
-        Date.now();
+  document.getElementById("hours")
+    .textContent =
+    String(hours).padStart(2,"0");
 
+  document.getElementById("minutes")
+    .textContent =
+    String(minutes).padStart(2,"0");
 
-    if(distance <= 0){
-
-        return;
-
-    }
-
-
-    const days =
-        Math.floor(
-            distance /
-            (1000 * 60 * 60 * 24)
-        );
-
-
-    const hours =
-        Math.floor(
-            (
-                distance %
-                (1000 * 60 * 60 * 24)
-            )
-            /
-            (1000 * 60 * 60)
-        );
-
-
-    const minutes =
-        Math.floor(
-            (
-                distance %
-                (1000 * 60 * 60)
-            )
-            /
-            (1000 * 60)
-        );
-
-
-    const seconds =
-        Math.floor(
-            (
-                distance %
-                (1000 * 60)
-            )
-            /
-            1000
-        );
-
-
-    document.getElementById("days")
-        .textContent =
-        String(days).padStart(2,"0");
-
-
-    document.getElementById("hours")
-        .textContent =
-        String(hours).padStart(2,"0");
-
-
-    document.getElementById("minutes")
-        .textContent =
-        String(minutes).padStart(2,"0");
-
-
-    document.getElementById("seconds")
-        .textContent =
-        String(seconds).padStart(2,"0");
+  document.getElementById("seconds")
+    .textContent =
+    String(seconds).padStart(2,"0");
 
 }
 
 
-setInterval(
-    updateCountdown,
-    1000
-);
+setInterval(updateTimer,1000);
+
+updateTimer();
 
 
-updateCountdown();
+/* =========================
+   ESC KEY
+========================= */
+
+document.addEventListener("keydown",event=>{
+
+  if(event.key === "Escape"){
+
+    closeCart();
+    closeSearch();
+
+  }
+
+});
 
 
-/* =========================================
-   INITIAL CART
-========================================= */
+/* =========================
+   CLICK OUTSIDE CART
+========================= */
+
+document
+  .getElementById("cartOverlay")
+  .addEventListener("click",event=>{
+
+    if(event.target.id === "cartOverlay"){
+
+      closeCart();
+
+    }
+
+});
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+products.forEach((product,index)=>{
+
+  product.dataset.original = index;
+
+});
 
 updateCart();
 
